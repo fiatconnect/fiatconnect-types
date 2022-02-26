@@ -5,11 +5,22 @@
   "scripts": {
     "prepublish": "tsc",
     "lint": "eslint --ext=.tsx,.ts src/",
-    "release": "standard-version"  },
+    "release": "standard-version"
+  },
+  "keywords": [
+    "fiatconnect",
+    "types",
+    "api",
+    "celo"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "git@github.com:fiatconnect/fiatconnect-types.git",
   "author": "Charlie Andrews <charlie.andrews@valoraapp.com>",
+  "bugs": {
+    "url": "https://github.com/fiatconnect/fiatconnect-types/issues"
+  },
+  "homepage": "https://github.com/fiatconnect/fiatconnect-types#readme",
   "license": "MIT",
   "private": false,
   "devDependencies": {
