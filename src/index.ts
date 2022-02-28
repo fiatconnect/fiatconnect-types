@@ -137,7 +137,7 @@ export type TransferStatusResponse = {
  * FiatConnect static type definitions.
  */
 
-type FiatAccountId = string
+export type FiatAccountId = string
 
 export enum TransferType {
   TransferIn = 'TransferIn',
