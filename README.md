@@ -25,3 +25,11 @@ export async function getTransferStatus(transferId: string): Promise<TransferSta
   return response.data.status
 }
 ```
+
+## Contributing
+- [Reporting issues](https://github.com/fiatconnect/fiatconnect-types/issues)
+- [Submitting a pull request](https://github.com/fiatconnect/fiatconnect-types/pulls)
+- Deploying
+  - Request access to our [NPM organization](https://www.npmjs.com/org/fiatconnect) on [Valora Discord](https://discord.gg/rwxxsZjJbd)
+  - Make sure you are on branch `main`
+  - Run `yarn prepublish && yarn release`
