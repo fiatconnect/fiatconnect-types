@@ -38,5 +38,5 @@ export async function getTransferStatus(transferId: string): Promise<TransferSta
   - Once code review has taken place:
     - Merge your branch
     - Run `git push origin vX.Y.Z` to push your tag (where X.Y.Z is the version you are trying to publish)
-    - Run `npm publish`
-
+    - [Create a release](https://github.com/fiatconnect/fiatconnect-types/releases) with the new tag 
+    - Run `npm publish --public`
