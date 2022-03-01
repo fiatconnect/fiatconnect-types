@@ -1,0 +1,37 @@
+{
+  "name": "@fiatconnect/fiatconnect-types",
+  "version": "1.0.0",
+  "description": "Types used in the FiatConnect specification. Offered as standalone module for payment providers and wallets to both use for FiatConnect APIs and integrations.",
+  "scripts": {
+    "prepublish": "tsc",
+    "lint": "eslint --ext=.tsx,.ts src/",
+    "release": "standard-version"
+  },
+  "keywords": [
+    "fiatconnect",
+    "types",
+    "api",
+    "celo"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": "git@github.com:fiatconnect/fiatconnect-types.git",
+  "author": "Charlie Andrews <charlie.andrews@valoraapp.com>",
+  "bugs": {
+    "url": "https://github.com/fiatconnect/fiatconnect-types/issues"
+  },
+  "homepage": "https://github.com/fiatconnect/fiatconnect-types#readme",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@valora/eslint-config-typescript": "^0.0.1",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-native": "^3.11.0",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.5.5"
+  }
+}
