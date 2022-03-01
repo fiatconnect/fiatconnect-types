@@ -29,7 +29,14 @@ export async function getTransferStatus(transferId: string): Promise<TransferSta
 ## Contributing
 - [Reporting issues](https://github.com/fiatconnect/fiatconnect-types/issues)
 - [Submitting a pull request](https://github.com/fiatconnect/fiatconnect-types/pulls)
-- Deploying
+- Publishing updates
   - Request access to our [NPM organization](https://www.npmjs.com/org/fiatconnect) on [Valora Discord](https://discord.gg/rwxxsZjJbd)
-  - Make sure you are on branch `main`
+  - Make sure you are on the latest version of branch `main`
+  - Check out a release branch
   - Run `yarn prepublish && yarn release`
+  - Add release notes to `CHANGELOG.md`
+  - Once code review has taken place:
+    - Merge your branch
+    - Run `git push origin vX.Y.Z` to push your tag (where X.Y.Z is the version you are trying to publish)
+    - Run `npm publish`
+
