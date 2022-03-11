@@ -258,6 +258,7 @@ export interface MockCheckingAccount {
   routingNumber: string
 }
 
+// https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
 export interface PersonalDataAndDocumentsKyc {
   firstName: string
   middleName?: string
