@@ -1,6 +1,6 @@
 {
   "name": "@fiatconnect/fiatconnect-types",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Types used in the FiatConnect specification. Offered as standalone module for payment providers and wallets to both use for FiatConnect APIs and integrations.",
   "scripts": {
     "prepublish": "tsc",
