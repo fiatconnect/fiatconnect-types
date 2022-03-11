@@ -4,10 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [1.0.3](https://github.com/fiatconnect/fiatconnect-types/compare/v1.0.0...v1.0.3) (2022-03-11)
 
-
-### Features
-
-* **kyc:** Add support for PersonalDataAndDocuments KYC schema ([#5](https://github.com/fiatconnect/fiatconnect-types/issues/5)) ([5d529f0](https://github.com/fiatconnect/fiatconnect-types/commit/5d529f07769ef643ff265a7cfb4849d7d71e61fd))
+Fix an issue with PersonalDataAndDocumentsKyc being exported under the wrong name.
 
 ### [1.0.2](https://github.com/fiatconnect/fiatconnect-types/compare/v1.0.0...v1.0.2) (2022-03-11)
 
