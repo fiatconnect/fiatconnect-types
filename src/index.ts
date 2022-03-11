@@ -237,7 +237,7 @@ export enum CryptoType {
 }
 
 export enum KycSchema {
-  MockNameAndAddress = 'MockNameAndAddress',
+  PersonalDataAndDocuments = 'PersonalDataAndDocuments',
 }
 
 export enum FiatAccountSchema {
@@ -258,17 +258,25 @@ export interface MockCheckingAccount {
   routingNumber: string
 }
 
-export interface MockNameAndAddressKyc {
+// https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
+export interface PersonalDataAndDocumentsKyc {
   firstName: string
+  middleName?: string
   lastName: string
-  address: PostalAddress
-}
-
-export interface PostalAddress {
-  address1: string
-  address2?: string
-  city: string
-  region: string // in the US this means state
-  postalCode: string
-  isoCountryCode: string
+  dateOfBirth: {
+    day: string
+    month: string
+    year: string
+  }
+  address: {
+    address1: string
+    address2?: string
+    isoCountryCode: string
+    isoRegionCode: string
+    city: string
+    postalCode?: string
+  }
+  phoneNumber: string
+  selfieDocument: string
+  identificationDocument: string
 }
