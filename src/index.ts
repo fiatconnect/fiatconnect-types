@@ -39,7 +39,7 @@ export type QuoteResponse = {
     kycRequired: boolean
     kycSchemas: KycSchema[]
   }
-  fiatAccount: Record<FiatAccountType, FiatAccountTypeQuoteData>
+  fiatAccount: Partial<Record<FiatAccountType, FiatAccountTypeQuoteData>>
 }
 
 export type QuoteErrorResponse = {
@@ -89,10 +89,10 @@ export type DeleteFiatAccountRequestParams = {
 }
 
 // Response body for GET /accounts/:fiatAccountSchema
-export type GetFiatAccountsResponse = Record<
+export type GetFiatAccountsResponse = Partial<Record<
   FiatAccountType,
   ObfuscatedFiatAccountData[]
-  >
+  >>
 
 // Response body for POST /accounts/:fiatAccountSchema
 export type AddFiatAccountResponse = ObfuscatedFiatAccountData
