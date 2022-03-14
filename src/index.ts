@@ -42,6 +42,14 @@ export type QuoteResponse = {
   fiatAccount: Record<FiatAccountType, FiatAccountTypeQuoteData>
 }
 
+export type QuoteErrorResponse = {
+  error: FiatConnectError
+  minimumFiatAmount?: number
+  maximumFiatAmount?: number
+  minimumCryptoAmount?: number
+  maximumCryptoAmount?: number
+}
+
 // Helper type
 export type FiatAccountTypeQuoteData = {
   fiatAccountSchemas: FiatAccountSchema[]
