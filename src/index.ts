@@ -44,10 +44,10 @@ export type QuoteResponse = {
 
 export type QuoteErrorResponse = {
   error: FiatConnectError
-  minimumFiatAmount?: number
-  maximumFiatAmount?: number
-  minimumCryptoAmount?: number
-  maximumCryptoAmount?: number
+  minimumFiatAmount?: string
+  maximumFiatAmount?: string
+  minimumCryptoAmount?: string
+  maximumCryptoAmount?: string
 }
 
 // Helper type
