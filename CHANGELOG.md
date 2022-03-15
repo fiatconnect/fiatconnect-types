@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [2.1.1](https://github.com/fiatconnect/fiatconnect-types/compare/v2.1.0...v2.1.1) (2022-03-15)
+## [2.1.1](https://github.com/fiatconnect/fiatconnect-types/compare/v2.1.0...v2.1.1) (2022-03-15)
 ### Bug Fixes
 
 * **fiat-account:** record should be partial ([#11](https://github.com/fiatconnect/fiatconnect-types/issues/11)) ([88346f8](https://github.com/fiatconnect/fiatconnect-types/commit/88346f859b5b1b5107e46c872db1a3f1a556ba26))
