@@ -37,9 +37,17 @@ export type QuoteResponse = {
   }
   kyc: {
     kycRequired: boolean
-    kycSchemas: KycSchema[]
+    kycSchemas: QuoteResponseKycSchema[]
   }
   fiatAccount: Partial<Record<FiatAccountType, FiatAccountTypeQuoteData>>
+}
+
+// Helper type
+export type QuoteResponseKycSchema = {
+  kycSchema: KycSchema
+  allowedValues: {
+    [key:string]: string[]
+  }
 }
 
 export type QuoteErrorResponse = {
@@ -52,12 +60,20 @@ export type QuoteErrorResponse = {
 
 // Helper type
 export type FiatAccountTypeQuoteData = {
-  fiatAccountSchemas: FiatAccountSchema[]
+  fiatAccountSchemas: QuoteResponseFiatAccountSchema[]
   fee?: string
   feeType?: FeeType
   feeFrequency?: FeeFrequency
   settlementTimeLowerBound?: string // ISO-8601 Duration
   settlementTimeUpperBound?: string // ISO-8601 Duration
+}
+
+// Helper type
+export type QuoteResponseFiatAccountSchema = {
+  fiatAccountSchema: FiatAccountSchema
+  allowedValues: {
+    [key:string]: string[]
+  }
 }
 
 /*
