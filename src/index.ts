@@ -131,6 +131,7 @@ export type TransferRequestBody = {
   cryptoType: CryptoType
   amount: string
   fiatAccountId: string
+  destinationAddress?: string
 }
 
 // Response body for POST /transfer/in and POST /transfer/out
