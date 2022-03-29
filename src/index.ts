@@ -236,7 +236,7 @@ export enum FiatConnectError {
   ResourceNotFound = 'ResourceNotFound',
   TransferNotAllowed = 'TransferNotAllowed',
   KycExpired = 'KycExpired',
-  InvalidParameters = 'InvalidParameters'
+  InvalidParameters = 'InvalidParameters',
 }
 
 /*
