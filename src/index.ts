@@ -116,8 +116,8 @@ export type AddFiatAccountResponse = ObfuscatedFiatAccountData
 // Helper type. Generic representation of a fiat account, with personal information stripped.
 export type ObfuscatedFiatAccountData = {
   fiatAccountId: string
-  name: string
-  institution: string
+  accountName: string
+  institutionName: string
   fiatAccountType: FiatAccountType
 }
 
@@ -266,21 +266,19 @@ export enum KycSchema {
 }
 
 export enum FiatAccountSchema {
-  MockCheckingAccount = 'MockCheckingAccount',
+  AccountNumber = 'AccountNumber'
 }
 
 export enum FiatAccountType {
-  MockCheckingAccount = 'MockCheckingAccount',
-  MockDebitCard = 'MockDebitCard',
-  MockCreditCard = 'MockCreditCard',
+  BankAccount = 'BankAccount'
 }
 
-export interface MockCheckingAccount {
-  bankName: string
-  accountName: string
-  fiatType: FiatType
-  accountNumber: string
-  routingNumber: string
+export interface AccountNumber {
+  accountName: string,
+  institutionName: string,
+  accountNumber: string,
+  country: string,
+  fiatAccountType: FiatAccountType.BankAccount
 }
 
 // https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
