@@ -255,11 +255,13 @@ export enum FiatConnectError {
 export enum FiatType {
   USD = 'USD',
   EUR = 'EUR',
+  REAL = 'REAL'
 }
 
 export enum CryptoType {
   cUSD = 'cUSD',
   cEUR = 'cEUR',
+  cREAL = 'cREAL',
   CELO = 'CELO',
 }
 
