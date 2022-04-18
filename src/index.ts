@@ -33,7 +33,8 @@ export type QuoteResponse = {
     cryptoType: CryptoType
     fiatAmount: string
     cryptoAmount: string
-    guaranteedUntil?: string
+    guaranteedUntil: string
+    quoteId: string
   }
   kyc: {
     kycRequired: boolean
@@ -131,6 +132,7 @@ export type TransferRequestBody = {
   cryptoType: CryptoType
   amount: string
   fiatAccountId: string
+  quoteId: string
 }
 
 // Response body for POST /transfer/in and POST /transfer/out
