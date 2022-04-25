@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v2.1.1...v3.0.0) (2022-04-25)
+
+### ⚠ BREAKING CHANGES
+
+* quoteId added as required parameter for transfer requests
+* guaranteedUntil made required in quote response
+* quoteId added to quote response
+
+### Features
+* added REAL/cREAL ([#17](https://github.com/fiatconnect/fiatconnect-types/issues/17)) ([d0114ab](https://github.com/fiatconnect/fiatconnect-types/commit/d0114ab3869e7f2a061da950d43a731e0f5af8ef))
+* **errors:** add InvalidParameters error ([#14](https://github.com/fiatconnect/fiatconnect-types/issues/14)) ([2ceaefd](https://github.com/fiatconnect/fiatconnect-types/commit/2ceaefd3810913399ea84902226ae1f10c26e06e))
+
 ## [2.1.1](https://github.com/fiatconnect/fiatconnect-types/compare/v2.1.0...v2.1.1) (2022-03-15)
 ### Bug Fixes
 
