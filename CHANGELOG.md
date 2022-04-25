@@ -8,13 +8,10 @@ All notable changes to this project will be documented in this file. See [standa
 ### ⚠ BREAKING CHANGES
 
 * quoteId added as required parameter for transfer requests
-
-Other:
-quoteId added to quote response
-guaranteedUntil made required in quote response
+* guaranteedUntil made required in quote response
+* quoteId added to quote response
 
 ### Features
-
 * added REAL/cREAL ([#17](https://github.com/fiatconnect/fiatconnect-types/issues/17)) ([d0114ab](https://github.com/fiatconnect/fiatconnect-types/commit/d0114ab3869e7f2a061da950d43a731e0f5af8ef))
 * **errors:** add InvalidParameters error ([#14](https://github.com/fiatconnect/fiatconnect-types/issues/14)) ([2ceaefd](https://github.com/fiatconnect/fiatconnect-types/commit/2ceaefd3810913399ea84902226ae1f10c26e06e))
 * **kyc:** Add support for PersonalDataAndDocuments KYC schema ([#5](https://github.com/fiatconnect/fiatconnect-types/issues/5)) ([5d529f0](https://github.com/fiatconnect/fiatconnect-types/commit/5d529f07769ef643ff265a7cfb4849d7d71e61fd))
