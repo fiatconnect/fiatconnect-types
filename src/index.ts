@@ -225,6 +225,10 @@ export type WebhookTransferOutStatusRequestBody =
 
 // Errors returned by FiatConnect endpoints
 export enum FiatConnectError {
+  InvalidAddress = 'InvalidAddress',
+  InvalidDuration = 'InvalidDuration',
+  DurationTooLong = 'DurationTooLong',
+  InvalidSignature = 'InvalidSignature',
   GeoNotSupported = 'GeoNotSupported',
   CryptoAmountTooLow = 'CryptoAmountTooLow',
   CryptoAmountTooHigh = 'CryptoAmountTooHigh',
@@ -238,7 +242,13 @@ export enum FiatConnectError {
   ResourceNotFound = 'ResourceNotFound',
   TransferNotAllowed = 'TransferNotAllowed',
   KycExpired = 'KycExpired',
+  Unauthorized = 'Unauthorized',
+  SessionExpired = 'SessionExpired',
   InvalidParameters = 'InvalidParameters',
+  ContractLoginNotSupported = 'ContractLoginNotSupported',
+  NonceInUse = 'NonceInUse',
+  IssuedTooEarly = 'IssuedTooEarly',
+  ExpirationTooLong = 'ExpirationTooLong',
 }
 
 /*
@@ -306,4 +316,9 @@ export interface PersonalDataAndDocumentsKyc {
   phoneNumber: string
   selfieDocument: string
   identificationDocument: string
+}
+
+export interface AuthRequestBody {
+  message: string
+  signature: string
 }
