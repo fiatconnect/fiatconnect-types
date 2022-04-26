@@ -225,9 +225,6 @@ export type WebhookTransferOutStatusRequestBody =
 
 // Errors returned by FiatConnect endpoints
 export enum FiatConnectError {
-  InvalidAddress = 'InvalidAddress',
-  InvalidDuration = 'InvalidDuration',
-  DurationTooLong = 'DurationTooLong',
   InvalidSignature = 'InvalidSignature',
   GeoNotSupported = 'GeoNotSupported',
   CryptoAmountTooLow = 'CryptoAmountTooLow',
