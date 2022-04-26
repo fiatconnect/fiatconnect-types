@@ -5,7 +5,7 @@
   "scripts": {
     "prepublish": "tsc",
     "lint": "eslint --ext=.tsx,.ts src/",
-    "release": "standard-version"
+    "release": "standard-version --skip.tag"
   },
   "keywords": [
     "fiatconnect",
