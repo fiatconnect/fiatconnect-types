@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.0.0...v3.1.0) (2022-04-26)
+
+
+### Features
+
+* **auth:** add types and errors ([#19](https://github.com/fiatconnect/fiatconnect-types/issues/19)) ([6a169ee](https://github.com/fiatconnect/fiatconnect-types/commit/6a169eebae7bacb08f7fd6a284ae4f6d29e62fd4))
+* **FiatType:** added fiat types ([#20](https://github.com/fiatconnect/fiatconnect-types/issues/20)) ([27ece36](https://github.com/fiatconnect/fiatconnect-types/commit/27ece36faabf65dc817b35135fc57d51728b4070)), closes [fiatconnect/specification#26](https://github.com/fiatconnect/specification/issues/26)
+
 ## [3.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v2.1.1...v3.0.0) (2022-04-25)
 
 ### ⚠ BREAKING CHANGES
