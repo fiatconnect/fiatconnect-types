@@ -255,7 +255,19 @@ export enum FiatConnectError {
 export enum FiatType {
   USD = 'USD',
   EUR = 'EUR',
-  REAL = 'REAL'
+  REAL = 'REAL',
+  INR = 'INR',
+  NGN = 'NGN',
+  GHS = 'GHS',
+  KES = 'KES',
+  ZAR = 'ZAR',
+  PHP = 'PHP',
+  UGX = 'UGX',
+  GBP = 'GBP',
+  XOF = 'XOF',
+  RWF = 'RWF',
+  CNY = 'CNY',
+  XAF = 'XAF',
 }
 
 export enum CryptoType {
