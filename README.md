@@ -1,5 +1,5 @@
 # fiatconnect-types
-Types used in the FiatConnect specification. Offered as standalone module for payment providers and 
+Types used in the FiatConnect specification. Offered as standalone module for payment providers and
 wallets to both use for FiatConnect APIs and integrations.
 
 ## Installation
@@ -37,6 +37,6 @@ export async function getTransferStatus(transferId: string): Promise<TransferSta
   - Add release notes to `CHANGELOG.md`
   - Once code review has taken place:
     - Merge your branch
-    - Run `git push origin vX.Y.Z` to push your tag (where X.Y.Z is the version you are trying to publish)
-    - [Create a release](https://github.com/fiatconnect/fiatconnect-types/releases) with the new tag 
+    - Run `git tag vX.Y.Z && git push origin vX.Y.Z` to push your tag (where X.Y.Z is the version you are trying to publish)
+    - [Create a release](https://github.com/fiatconnect/fiatconnect-types/releases) with the new tag
     - Run `npm publish --public`
