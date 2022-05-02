@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.1.0...v3.2.0) (2022-05-02)
+
+
+### Features
+
+* **clock:** Add ClockResponse type ([#23](https://github.com/fiatconnect/fiatconnect-types/issues/23)) ([0fa549a](https://github.com/fiatconnect/fiatconnect-types/commit/0fa549a6f56f0a0a1273e0bf5c3f6ec21200070c))
+* **network:** add enum for network ([#24](https://github.com/fiatconnect/fiatconnect-types/issues/24)) ([1c25452](https://github.com/fiatconnect/fiatconnect-types/commit/1c254524e39928da76cde903d4ca1aea0792e6f3))
+
 ## [3.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.0.0...v3.1.0) (2022-04-26)
 
 
