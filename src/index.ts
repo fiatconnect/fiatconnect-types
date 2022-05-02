@@ -13,6 +13,16 @@
 */
 
 /*
+/ Auth Endpoint Types
+*/
+
+// Request body for /auth/login endpoint
+export interface AuthRequestBody {
+  message: string
+  signature: string
+}
+
+/*
 / Quote Endpoint Types
 */
 
@@ -248,6 +258,11 @@ export enum FiatConnectError {
   ExpirationTooLong = 'ExpirationTooLong',
 }
 
+export enum Network {
+  Alfajores = 'Alfajores',
+  Mainnet = 'Mainnet',
+}
+
 /*
  * FiatConnect dynamic type definitions.
  *
@@ -325,9 +340,4 @@ export interface PersonalDataAndDocumentsKyc {
   phoneNumber: string
   selfieDocument: string
   identificationDocument: string
-}
-
-export interface AuthRequestBody {
-  message: string
-  signature: string
 }
