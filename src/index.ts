@@ -13,6 +13,15 @@
 */
 
 /*
+/ Clock Endpoint Types
+*/
+
+// Response body for GET /clock
+export type ClockResponse = {
+  time: string
+}
+
+/*
 / Auth Endpoint Types
 */
 
