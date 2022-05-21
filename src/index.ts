@@ -176,7 +176,9 @@ export type TransferStatusResponse = {
   amountReceived: string
   fee?: string
   fiatAccountId: string
-}
+  transferId: string
+  transferAddress: string
+};
 
 /*
  * FiatConnect static type definitions.
@@ -191,7 +193,11 @@ export enum TransferType {
 
 export enum TransferStatus {
   TransferStarted = 'TransferStarted',
-  TransferPending = 'TransferPending',
+  TransferFiatFundsDebited = 'TransferFiatFundsDebited',
+  TransferSendingCryptoFunds = 'TransferSendingCryptoFunds',
+  TransferAmlFailed = 'TransferAmlFailed',
+  TransferReadyForUserToSendCryptoFunds = 'TransferReadyForUserToSendCryptoFunds',
+  TransferReceivedCryptoFunds = 'TransferReceivedCryptoFunds',
   TransferComplete = 'TransferComplete',
   TransferFailed = 'TransferFailed',
 }
@@ -265,6 +271,7 @@ export enum FiatConnectError {
   NonceInUse = 'NonceInUse',
   IssuedTooEarly = 'IssuedTooEarly',
   ExpirationTooLong = 'ExpirationTooLong',
+  InvalidFiatAccount = 'InvalidFiatAccount',
 }
 
 export enum Network {
@@ -317,7 +324,9 @@ export enum FiatAccountSchema {
 }
 
 export enum FiatAccountType {
-  BankAccount = 'BankAccount'
+  BankAccount = 'BankAccount',
+  MobileMoney = 'MobileMoney',
+  DuniaWallet = 'DuniaWallet'
 }
 
 export interface AccountNumber {
@@ -326,6 +335,28 @@ export interface AccountNumber {
   accountNumber: string,
   country: string,
   fiatAccountType: FiatAccountType.BankAccount
+}
+export interface MobileMoney {
+  accountName: string;
+  institutionName: string;
+  mobile: string;
+  country: string;
+  operator: SupportedOperatorEnum;
+  fiatAccountType: FiatAccountType.MobileMoney;
+}
+
+export interface DuniaWallet {
+  accountName: string;
+  institutionName: string;
+  mobile: string;
+  fiatAccountType: FiatAccountType.DuniaWallet;
+}
+
+export enum SupportedOperatorEnum {
+  ORANGE = 'ORANGE',
+  MOOV = 'MOOV',
+  MTN = 'MTN',
+  WAVE = 'WAVE',
 }
 
 // https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
