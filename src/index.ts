@@ -331,28 +331,28 @@ export enum FiatAccountType {
   DuniaWallet = 'DuniaWallet'
 }
 
-export interface AccountNumber {
-  accountName: string,
-  institutionName: string,
+interface requiredFiatAccountSchemaFields {
+  accountName: string;
+  institutionName: string;
+  fiatAccountType: FiatAccountType,
+}
+
+export type AccountNumber = requiredFiatAccountSchemaFields & {
   accountNumber: string,
   country: string,
   fiatAccountType: FiatAccountType.BankAccount
 }
-export interface MobileMoney {
-  accountName: string,
-  institutionName: string,
+export type MobileMoney = requiredFiatAccountSchemaFields & {
   mobile: string,
   country: string,
   operator: SupportedOperatorEnum,
   fiatAccountType: FiatAccountType.MobileMoney
 }
 
-export interface DuniaWallet {
-  accountName: string,
-  institutionName: string,
-  mobile: string,
-  fiatAccountType: FiatAccountType.DuniaWallet
-}
+export type DuniaWallet = requiredFiatAccountSchemaFields & {
+  mobile: string;
+  fiatAccountType: FiatAccountType.DuniaWallet;
+};
 
 export enum SupportedOperatorEnum {
   ORANGE = 'ORANGE',
