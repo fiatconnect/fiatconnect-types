@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.2.0...v3.3.0) (2022-05-23)
+### Features
+
+* **batch updates:** Updated types for TransferStatusResponse, TransferStatus. Added new FiatAccountSchema types ([#26]((https://github.com/fiatconnect/fiatconnect-types/issues/26))) ([dcdf20c](https://github.com/fiatconnect/fiatconnect-types/commit/dcdf20c649817fd7301f999ee1af8de769851bae))
+
 ## [3.2.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.1.0...v3.2.0) (2022-05-02)
 
 
