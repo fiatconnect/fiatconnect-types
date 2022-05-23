@@ -320,7 +320,9 @@ export enum KycSchema {
 }
 
 export enum FiatAccountSchema {
-  AccountNumber = 'AccountNumber'
+  AccountNumber = 'AccountNumber',
+  MobileMoney = 'MobileMoney',
+  DuniaWallet = 'DuniaWallet',
 }
 
 export enum FiatAccountType {
