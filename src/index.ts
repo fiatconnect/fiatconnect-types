@@ -337,19 +337,19 @@ export interface AccountNumber {
   fiatAccountType: FiatAccountType.BankAccount
 }
 export interface MobileMoney {
-  accountName: string;
-  institutionName: string;
-  mobile: string;
-  country: string;
-  operator: SupportedOperatorEnum;
-  fiatAccountType: FiatAccountType.MobileMoney;
+  accountName: string,
+  institutionName: string,
+  mobile: string,
+  country: string,
+  operator: SupportedOperatorEnum,
+  fiatAccountType: FiatAccountType.MobileMoney
 }
 
 export interface DuniaWallet {
-  accountName: string;
-  institutionName: string;
-  mobile: string;
-  fiatAccountType: FiatAccountType.DuniaWallet;
+  accountName: string,
+  institutionName: string,
+  mobile: string,
+  fiatAccountType: FiatAccountType.DuniaWallet
 }
 
 export enum SupportedOperatorEnum {
