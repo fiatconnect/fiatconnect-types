@@ -147,9 +147,6 @@ export type ObfuscatedFiatAccountData = {
 
 // Request body for POST /transfer/in and POST /transfer/out
 export type TransferRequestBody = {
-  fiatType: FiatType
-  cryptoType: CryptoType
-  amount: string
   fiatAccountId: string
   quoteId: string
 }
