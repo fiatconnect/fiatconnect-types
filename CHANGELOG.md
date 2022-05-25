@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [3.4.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.3.0...v3.4.0) (2022-05-25)
 ### Features
-* **transfer request body:** Update TransferRequestBody fields
+* **transfer request body:** Update TransferRequestBody fields ([#34] ((https://github.com/fiatconnect/specification/commit/e175ee9acd92a462d8f3669278992ac10b40ac99)))
 
 ## [3.3.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.2.0...v3.3.0) (2022-05-23)
 ### Features
