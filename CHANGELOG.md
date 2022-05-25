@@ -2,11 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-<<<<<<< HEAD
 ### [3.4.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.3.0...v3.4.0) (2022-05-25)
-=======
-### [3.3.1](https://github.com/fiatconnect/fiatconnect-types/compare/v3.3.0...v3.3.1) (2022-05-25)
->>>>>>> d1b7ffe26e5d5b227ae352546d458b5894e00bea
 ### Features
 * **transfer request body:** Update TransferRequestBody fields
 
