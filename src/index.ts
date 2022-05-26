@@ -286,7 +286,8 @@ export enum Network {
 export enum FiatType {
   USD = 'USD',
   EUR = 'EUR',
-  REAL = 'REAL',
+  BRL = 'BRL',
+  GNF = 'GNF',
   INR = 'INR',
   NGN = 'NGN',
   GHS = 'GHS',
