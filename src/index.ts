@@ -1,4 +1,3 @@
-
 /*
 / Types for request and response bodies.
 /
@@ -66,7 +65,7 @@ export type QuoteResponse = {
 export type QuoteResponseKycSchema = {
   kycSchema: KycSchema
   allowedValues: {
-    [key:string]: string[]
+    [key: string]: string[]
   }
 }
 
@@ -92,7 +91,7 @@ export type FiatAccountTypeQuoteData = {
 export type QuoteResponseFiatAccountSchema = {
   fiatAccountSchema: FiatAccountSchema
   allowedValues: {
-    [key:string]: string[]
+    [key: string]: string[]
   }
 }
 
@@ -125,10 +124,9 @@ export type DeleteFiatAccountRequestParams = {
 }
 
 // Response body for GET /accounts/:fiatAccountSchema
-export type GetFiatAccountsResponse = Partial<Record<
-  FiatAccountType,
-  ObfuscatedFiatAccountData[]
-  >>
+export type GetFiatAccountsResponse = Partial<
+  Record<FiatAccountType, ObfuscatedFiatAccountData[]>
+>
 
 // Response body for POST /accounts/:fiatAccountSchema
 export type AddFiatAccountResponse = ObfuscatedFiatAccountData
@@ -175,7 +173,7 @@ export type TransferStatusResponse = {
   fiatAccountId: string
   transferId: string
   transferAddress: string
-};
+}
 
 /*
  * FiatConnect static type definitions.
@@ -321,36 +319,51 @@ export enum FiatAccountSchema {
   AccountNumber = 'AccountNumber',
   MobileMoney = 'MobileMoney',
   DuniaWallet = 'DuniaWallet',
+  IBANNumber = 'IBANNumber',
+  IFSCAccount = 'IFSCAccount',
 }
 
 export enum FiatAccountType {
   BankAccount = 'BankAccount',
   MobileMoney = 'MobileMoney',
-  DuniaWallet = 'DuniaWallet'
+  DuniaWallet = 'DuniaWallet',
 }
 
 interface RequiredFiatAccountSchemaFields {
-  accountName: string;
-  institutionName: string;
-  fiatAccountType: FiatAccountType,
+  accountName: string
+  institutionName: string
+  fiatAccountType: FiatAccountType
 }
 
 export type AccountNumber = RequiredFiatAccountSchemaFields & {
-  accountNumber: string,
-  country: string,
+  accountNumber: string
+  country: string
   fiatAccountType: FiatAccountType.BankAccount
 }
 export type MobileMoney = RequiredFiatAccountSchemaFields & {
-  mobile: string,
-  country: string,
-  operator: SupportedOperatorEnum,
+  mobile: string
+  country: string
+  operator: SupportedOperatorEnum
   fiatAccountType: FiatAccountType.MobileMoney
 }
 
 export type DuniaWallet = RequiredFiatAccountSchemaFields & {
-  mobile: string;
-  fiatAccountType: FiatAccountType.DuniaWallet;
-};
+  mobile: string
+  fiatAccountType: FiatAccountType.DuniaWallet
+}
+
+export type IBANNumber = RequiredFiatAccountSchemaFields & {
+  iban: string
+  country: string
+  fiatAccountType: FiatAccountType.BankAccount
+}
+
+export type IFSCAccount = RequiredFiatAccountSchemaFields & {
+  ifsc: string
+  accountNumber: string
+  country: string
+  fiatAccountType: FiatAccountType.BankAccount
+}
 
 export enum SupportedOperatorEnum {
   ORANGE = 'ORANGE',
