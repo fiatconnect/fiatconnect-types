@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [4.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v3.3.0...v4.1.0) (2022-06-06)
+## [4.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v4.0.0...v4.1.0) (2022-06-06)
 
 
 ### Features
