@@ -336,30 +336,31 @@ interface RequiredFiatAccountSchemaFields {
   fiatAccountType: FiatAccountType
 }
 
-export type AccountNumber = RequiredFiatAccountSchemaFields & {
+type AccountNumber = RequiredFiatAccountSchemaFields & {
   accountNumber: string
   country: string
   fiatAccountType: FiatAccountType.BankAccount
 }
-export type MobileMoney = RequiredFiatAccountSchemaFields & {
+
+type MobileMoney = RequiredFiatAccountSchemaFields & {
   mobile: string
   country: string
   operator: SupportedOperatorEnum
   fiatAccountType: FiatAccountType.MobileMoney
 }
 
-export type DuniaWallet = RequiredFiatAccountSchemaFields & {
+type DuniaWallet = RequiredFiatAccountSchemaFields & {
   mobile: string
   fiatAccountType: FiatAccountType.DuniaWallet
 }
 
-export type IBANNumber = RequiredFiatAccountSchemaFields & {
+type IBANNumber = RequiredFiatAccountSchemaFields & {
   iban: string
   country: string
   fiatAccountType: FiatAccountType.BankAccount
 }
 
-export type IFSCAccount = RequiredFiatAccountSchemaFields & {
+type IFSCAccount = RequiredFiatAccountSchemaFields & {
   ifsc: string
   accountNumber: string
   country: string
