@@ -114,9 +114,9 @@ export type KycStatusResponse = {
 */
 
 // Request body for POST /accounts/
-export type PostFiatAccountRequestBody = {
-  fiatAccountSchema: FiatAccountSchema
-  data: FiatAccountSchemaData
+export type PostFiatAccountRequestBody<T extends FiatAccountSchema> = {
+  fiatAccountSchema: T
+  data: FiatAccountSchemas[T]
 }
 
 // Path parameters for DELETE /accounts/:fiatAccountId
@@ -373,13 +373,14 @@ export enum SupportedOperatorEnum {
   WAVE = 'WAVE',
 }
 
-// Union of all supported fiat account schemas. List must be manually updated
-export type FiatAccountSchemaData =
-  | AccountNumber
-  | MobileMoney
-  | DuniaWallet
-  | IBANNumber
-  | IFSCAccount
+// Map of all supported fiat account schemas to the corresponding schema type. List must be manually updated
+export type FiatAccountSchemas = {
+  [FiatAccountSchema.AccountNumber]: AccountNumber
+  [FiatAccountSchema.MobileMoney]: MobileMoney
+  [FiatAccountSchema.DuniaWallet]: DuniaWallet
+  [FiatAccountSchema.IBANNumber]: IBANNumber
+  [FiatAccountSchema.IFSCAccount]: IFSCAccount
+}
 
 // https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
 export interface PersonalDataAndDocumentsKyc {
