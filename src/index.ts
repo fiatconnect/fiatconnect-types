@@ -113,23 +113,24 @@ export type KycStatusResponse = {
 / Fiat Account Endpoint Types
 */
 
-// Path parameters for POST /accounts/:fiatAccountSchema
-export type AddFiatAccountRequestParams = {
-  fiatAccountSchema: FiatAccountSchema
+// Request body for POST /accounts/
+export type PostFiatAccountRequestBody<T extends FiatAccountSchema> = {
+  fiatAccountSchema: T
+  data: FiatAccountSchemas[T]
 }
 
-// Path parameters for DELETE /accounnt/:fiatAccountId
+// Path parameters for DELETE /accounts/:fiatAccountId
 export type DeleteFiatAccountRequestParams = {
   fiatAccountId: FiatAccountId
 }
 
-// Response body for GET /accounts/:fiatAccountSchema
+// Response body for GET /accounts/
 export type GetFiatAccountsResponse = Partial<
   Record<FiatAccountType, ObfuscatedFiatAccountData[]>
 >
 
-// Response body for POST /accounts/:fiatAccountSchema
-export type AddFiatAccountResponse = ObfuscatedFiatAccountData
+// Response body for POST /accounts/
+export type PostFiatAccountResponse = ObfuscatedFiatAccountData
 
 // Helper type. Generic representation of a fiat account, with personal information stripped.
 export type ObfuscatedFiatAccountData = {
@@ -335,30 +336,31 @@ interface RequiredFiatAccountSchemaFields {
   fiatAccountType: FiatAccountType
 }
 
-export type AccountNumber = RequiredFiatAccountSchemaFields & {
+type AccountNumber = RequiredFiatAccountSchemaFields & {
   accountNumber: string
   country: string
   fiatAccountType: FiatAccountType.BankAccount
 }
-export type MobileMoney = RequiredFiatAccountSchemaFields & {
+
+type MobileMoney = RequiredFiatAccountSchemaFields & {
   mobile: string
   country: string
   operator: SupportedOperatorEnum
   fiatAccountType: FiatAccountType.MobileMoney
 }
 
-export type DuniaWallet = RequiredFiatAccountSchemaFields & {
+type DuniaWallet = RequiredFiatAccountSchemaFields & {
   mobile: string
   fiatAccountType: FiatAccountType.DuniaWallet
 }
 
-export type IBANNumber = RequiredFiatAccountSchemaFields & {
+type IBANNumber = RequiredFiatAccountSchemaFields & {
   iban: string
   country: string
   fiatAccountType: FiatAccountType.BankAccount
 }
 
-export type IFSCAccount = RequiredFiatAccountSchemaFields & {
+type IFSCAccount = RequiredFiatAccountSchemaFields & {
   ifsc: string
   accountNumber: string
   country: string
@@ -370,6 +372,15 @@ export enum SupportedOperatorEnum {
   MOOV = 'MOOV',
   MTN = 'MTN',
   WAVE = 'WAVE',
+}
+
+// Map of all supported fiat account schemas to the corresponding schema type. List must be manually updated
+export type FiatAccountSchemas = {
+  [FiatAccountSchema.AccountNumber]: AccountNumber
+  [FiatAccountSchema.MobileMoney]: MobileMoney
+  [FiatAccountSchema.DuniaWallet]: DuniaWallet
+  [FiatAccountSchema.IBANNumber]: IBANNumber
+  [FiatAccountSchema.IFSCAccount]: IFSCAccount
 }
 
 // https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
