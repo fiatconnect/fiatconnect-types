@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v4.1.0...v5.0.0) (2022-06-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **accounts:** update params for fiat accounts endpoint ([#33](https://github.com/fiatconnect/fiatconnect-types/issues/33)) ([7466a20](https://github.com/fiatconnect/fiatconnect-types/commit/7466a204fb687b0f7109844268a5517e41f23f09))
+* **kyc:** expose map type of kyc schemas ([#34](https://github.com/fiatconnect/fiatconnect-types/issues/34)) ([5a1aee0](https://github.com/fiatconnect/fiatconnect-types/commit/5a1aee007f822d8c15fa7ab2f4072f1d0f6c903b))
+
 ## [4.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v4.0.0...v4.1.0) (2022-06-06)
 
 
