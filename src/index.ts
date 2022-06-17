@@ -384,7 +384,7 @@ export type FiatAccountSchemas = {
 }
 
 // https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
-export interface PersonalDataAndDocumentsKyc {
+interface PersonalDataAndDocumentsKyc {
   firstName: string
   middleName?: string
   lastName: string
@@ -404,4 +404,9 @@ export interface PersonalDataAndDocumentsKyc {
   phoneNumber: string
   selfieDocument: string
   identificationDocument: string
+}
+
+// Map of all supported KYC schemas to the corresponding schema type. List must be manually updated
+export type KycSchemas = {
+  [KycSchema.PersonalDataAndDocuments]: PersonalDataAndDocumentsKyc
 }
