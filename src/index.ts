@@ -34,8 +34,8 @@ export interface AuthRequestBody {
 / Quote Endpoint Types
 */
 
-// Query parameters for all /quote endpoints
-export type QuoteRequestQuery = {
+// Request body for all /quote endpoints
+export type QuoteRequestBody = {
   fiatType: FiatType
   cryptoType: CryptoType
   fiatAmount?: string
