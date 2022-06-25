@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v5.0.0...v6.0.0) (2022-06-25)
+
+### ⚠ BREAKING CHANGES
+
+* **quote:** renamed QuoteRequestQuery to QuoteRequestBody ([#36](https://github.com/fiatconnect/fiatconnect-types/issues/37)) ([65f55f9](https://github.com/fiatconnect/specification/commit/65f55f96398b8dbd4b14597ff9fdbb8710243391))
+
 ## [5.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v4.1.0...v5.0.0) (2022-06-17)
 
 
