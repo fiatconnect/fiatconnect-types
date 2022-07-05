@@ -199,11 +199,11 @@ export enum TransferStatus {
 }
 
 export enum KycStatus {
-  NotCreated = 'NotCreated',
-  Pending = 'Pending',
-  Approved = 'Approved',
-  Denied = 'Denied',
-  Expired = 'Expired',
+  KycNotCreated = 'KycNotCreated',
+  KycPending = 'KycPending',
+  KycApproved = 'KycApproved',
+  KycDenied = 'KycDenied',
+  KycExpired = 'KycExpired',
 }
 
 export enum FeeType {
