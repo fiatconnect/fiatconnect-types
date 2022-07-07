@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.1](https://github.com/fiatconnect/fiatconnect-types/compare/v6.0.0...v6.0.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* prefix KYC statuses ([#39](https://github.com/fiatconnect/fiatconnect-types/issues/39)) ([f17d2ae](https://github.com/fiatconnect/fiatconnect-types/commit/f17d2ae78c559842ebfead30839ed5cbbee07472))
+
 ### [6.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v5.0.0...v6.0.0) (2022-06-25)
 
 ### ⚠ BREAKING CHANGES
