@@ -38,8 +38,8 @@ export interface AuthRequestBody {
 export type QuoteRequestBody = {
   fiatType: FiatType
   cryptoType: CryptoType
-  fiatAmount?: string
-  cryptoAmount?: string
+  fiatAmount?: number
+  cryptoAmount?: number
   country: string
   region?: string
 }
@@ -49,8 +49,8 @@ export type QuoteResponse = {
   quote: {
     fiatType: FiatType
     cryptoType: CryptoType
-    fiatAmount: string
-    cryptoAmount: string
+    fiatAmount: number
+    cryptoAmount: number
     guaranteedUntil: string
     quoteId: string
   }
@@ -71,16 +71,16 @@ export type QuoteResponseKycSchema = {
 
 export type QuoteErrorResponse = {
   error: FiatConnectError
-  minimumFiatAmount?: string
-  maximumFiatAmount?: string
-  minimumCryptoAmount?: string
-  maximumCryptoAmount?: string
+  minimumFiatAmount?: number
+  maximumFiatAmount?: number
+  minimumCryptoAmount?: number
+  maximumCryptoAmount?: number
 }
 
 // Helper type
 export type FiatAccountTypeQuoteData = {
   fiatAccountSchemas: QuoteResponseFiatAccountSchema[]
-  fee?: string
+  fee?: number
   feeType?: FeeType
   feeFrequency?: FeeFrequency
   settlementTimeLowerBound?: string // ISO-8601 Duration
@@ -168,9 +168,9 @@ export type TransferStatusResponse = {
   transferType: TransferType
   fiatType: FiatType
   cryptoType: CryptoType
-  amountProvided: string
-  amountReceived: string
-  fee?: string
+  amountProvided: number
+  amountReceived: number
+  fee?: number
   fiatAccountId: string
   transferId: string
   transferAddress: string
