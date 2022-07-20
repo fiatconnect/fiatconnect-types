@@ -223,26 +223,22 @@ export enum WebhookEventType {
   TransferOutStatusEvent = 'TransferOutStatusEvent',
 }
 
-export type WebhookRequestBody = {
-  eventType: WebhookEventType
-  provider: string
-  eventId: string
-  accountAddress: string
-}
-
-export type WebhookKycStatusRequestBody = WebhookRequestBody & {
-  payload: {
+type WebhookEventPayload = {
+  [WebhookEventType.KycStatusEvent]: {
     kycSchema: KycSchema
     kycStatus: KycStatus
   }
+  [WebhookEventType.TransferInStatusEvent]: TransferStatusResponse
+  [WebhookEventType.TransferOutStatusEvent]: TransferStatusResponse
 }
 
-export type WebhookTransferInStatusRequestBody = WebhookRequestBody & {
-  payload: TransferStatusResponse
+export type WebhookRequestBody<T extends WebhookEventType> = {
+  eventType: T
+  provider: string
+  eventId: string
+  accountAddress: string
+  payload: WebhookEventPayload[T]
 }
-
-export type WebhookTransferOutStatusRequestBody =
-  WebhookTransferInStatusRequestBody
 
 // Errors returned by FiatConnect endpoints
 export enum FiatConnectError {
