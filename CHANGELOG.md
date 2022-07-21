@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.0.2](https://github.com/fiatconnect/fiatconnect-types/compare/v6.0.1...v6.0.2) (2022-07-21)
+
+
+### Bug Fixes
+
+* **webhook:** ensure webhook and payload types match ([#42](https://github.com/fiatconnect/fiatconnect-types/issues/42)) ([0a0b394](https://github.com/fiatconnect/fiatconnect-types/commit/0a0b394ba6da4645cbd0150dd877be38504d0fc8))
+
 ### [6.0.1](https://github.com/fiatconnect/fiatconnect-types/compare/v6.0.0...v6.0.1) (2022-07-07)
 
 
