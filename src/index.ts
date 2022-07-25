@@ -299,6 +299,19 @@ export enum FiatType {
   RWF = 'RWF',
   CNY = 'CNY',
   XAF = 'XAF',
+  ARS = 'ARS',
+  BOB = 'BOB',
+  CLP = 'CLP',
+  COP = 'COP',
+  FKP = 'FKP',
+  GYD = 'GYD',
+  PYG = 'PYG',
+  PEN = 'PEN',
+  SRD = 'SRD',
+  UYU = 'UYU',
+  VES = 'VES',
+  MXN = 'MXN',
+  PAB = 'PAB',
 }
 
 export enum CryptoType {
