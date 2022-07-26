@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v6.0.2...v6.1.0) (2022-07-25)
+
+
+### Features
+
+* **FiatType:** add new currencies ([#44](https://github.com/fiatconnect/fiatconnect-types/issues/44)) ([77bc1c5](https://github.com/fiatconnect/fiatconnect-types/commit/77bc1c54a094e0219f8d82f66ae1e2df70e797ba))
+
 ### [6.0.2](https://github.com/fiatconnect/fiatconnect-types/compare/v6.0.1...v6.0.2) (2022-07-21)
 
 
