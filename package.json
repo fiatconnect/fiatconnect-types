@@ -24,12 +24,12 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@valora/eslint-config-typescript": "^0.0.1",
     "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.24.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^3.11.0",
     "standard-version": "^9.3.2",
     "typescript": "^4.7.4"
