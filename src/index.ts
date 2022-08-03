@@ -53,6 +53,7 @@ export type QuoteResponse = {
     cryptoAmount: string
     guaranteedUntil: string
     quoteId: string
+    transferType: TransferType
   }
   kyc: {
     kycRequired: boolean
@@ -138,6 +139,7 @@ export type ObfuscatedFiatAccountData = {
   accountName: string
   institutionName: string
   fiatAccountType: FiatAccountType
+  fiatAccountSchema: FiatAccountSchema
 }
 
 /*
