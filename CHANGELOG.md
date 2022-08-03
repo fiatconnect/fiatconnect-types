@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v6.1.0...v7.0.0) (2022-08-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **updates:** Add required fields to POST /quote and GET /accounts endpoints ([6f77bd5](https://github.com/fiatconnect/fiatconnect-types/commit/6f77bd55520df9f5c1d6135d9b9bbe7192af14f1))
+
 ## [6.1.0](https://github.com/fiatconnect/fiatconnect-types/compare/v6.0.2...v6.1.0) (2022-07-25)
 
 
