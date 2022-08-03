@@ -17,8 +17,8 @@
 
 // Response body for GET /clock
 export type ClockResponse = {
-  time: string;
-};
+  time: string
+}
 
 /*
 / Auth Endpoint Types
@@ -26,8 +26,8 @@ export type ClockResponse = {
 
 // Request body for /auth/login endpoint
 export interface AuthRequestBody {
-  message: string;
-  signature: string;
+  message: string
+  signature: string
 }
 
 /*
@@ -36,64 +36,64 @@ export interface AuthRequestBody {
 
 // Request body for all /quote endpoints
 export type QuoteRequestBody = {
-  fiatType: FiatType;
-  cryptoType: CryptoType;
-  fiatAmount?: string;
-  cryptoAmount?: string;
-  country: string;
-  region?: string;
-};
+  fiatType: FiatType
+  cryptoType: CryptoType
+  fiatAmount?: string
+  cryptoAmount?: string
+  country: string
+  region?: string
+}
 
 // Response body for all /quote endpoints
 export type QuoteResponse = {
   quote: {
-    fiatType: FiatType;
-    cryptoType: CryptoType;
-    fiatAmount: string;
-    cryptoAmount: string;
-    guaranteedUntil: string;
-    quoteId: string;
-  };
+    fiatType: FiatType
+    cryptoType: CryptoType
+    fiatAmount: string
+    cryptoAmount: string
+    guaranteedUntil: string
+    quoteId: string
+  }
   kyc: {
-    kycRequired: boolean;
-    kycSchemas: QuoteResponseKycSchema[];
-  };
-  fiatAccount: Partial<Record<FiatAccountType, FiatAccountTypeQuoteData>>;
-};
+    kycRequired: boolean
+    kycSchemas: QuoteResponseKycSchema[]
+  }
+  fiatAccount: Partial<Record<FiatAccountType, FiatAccountTypeQuoteData>>
+}
 
 // Helper type
 export type QuoteResponseKycSchema = {
-  kycSchema: KycSchema;
+  kycSchema: KycSchema
   allowedValues: {
-    [key: string]: string[];
-  };
-};
+    [key: string]: string[]
+  }
+}
 
 export type QuoteErrorResponse = {
-  error: FiatConnectError;
-  minimumFiatAmount?: string;
-  maximumFiatAmount?: string;
-  minimumCryptoAmount?: string;
-  maximumCryptoAmount?: string;
-};
+  error: FiatConnectError
+  minimumFiatAmount?: string
+  maximumFiatAmount?: string
+  minimumCryptoAmount?: string
+  maximumCryptoAmount?: string
+}
 
 // Helper type
 export type FiatAccountTypeQuoteData = {
-  fiatAccountSchemas: QuoteResponseFiatAccountSchema[];
-  fee?: string;
-  feeType?: FeeType;
-  feeFrequency?: FeeFrequency;
-  settlementTimeLowerBound?: string; // ISO-8601 Duration
-  settlementTimeUpperBound?: string; // ISO-8601 Duration
-};
+  fiatAccountSchemas: QuoteResponseFiatAccountSchema[]
+  fee?: string
+  feeType?: FeeType
+  feeFrequency?: FeeFrequency
+  settlementTimeLowerBound?: string // ISO-8601 Duration
+  settlementTimeUpperBound?: string // ISO-8601 Duration
+}
 
 // Helper type
 export type QuoteResponseFiatAccountSchema = {
-  fiatAccountSchema: FiatAccountSchema;
+  fiatAccountSchema: FiatAccountSchema
   allowedValues: {
-    [key: string]: string[];
-  };
-};
+    [key: string]: string[]
+  }
+}
 
 /*
 / KYC Endpoint Types
@@ -101,13 +101,13 @@ export type QuoteResponseFiatAccountSchema = {
 
 // Path parameters for all KYC endpoints
 export type KycRequestParams = {
-  kycSchema: KycSchema;
-};
+  kycSchema: KycSchema
+}
 
 // Response body for POST /kyc/:kycSchema and GET /kyc/:kycSchema/status
 export type KycStatusResponse = {
-  kycStatus: KycStatus;
-};
+  kycStatus: KycStatus
+}
 
 /*
 / Fiat Account Endpoint Types
@@ -115,28 +115,30 @@ export type KycStatusResponse = {
 
 // Request body for POST /accounts/
 export type PostFiatAccountRequestBody<T extends FiatAccountSchema> = {
-  fiatAccountSchema: T;
-  data: FiatAccountSchemas[T];
-};
+  fiatAccountSchema: T
+  data: FiatAccountSchemas[T]
+}
 
 // Path parameters for DELETE /accounts/:fiatAccountId
 export type DeleteFiatAccountRequestParams = {
-  fiatAccountId: FiatAccountId;
-};
+  fiatAccountId: FiatAccountId
+}
 
 // Response body for GET /accounts/
-export type GetFiatAccountsResponse = Partial<Record<FiatAccountType, ObfuscatedFiatAccountData[]>>;
+export type GetFiatAccountsResponse = Partial<
+  Record<FiatAccountType, ObfuscatedFiatAccountData[]>
+>
 
 // Response body for POST /accounts/
-export type PostFiatAccountResponse = ObfuscatedFiatAccountData;
+export type PostFiatAccountResponse = ObfuscatedFiatAccountData
 
 // Helper type. Generic representation of a fiat account, with personal information stripped.
 export type ObfuscatedFiatAccountData = {
-  fiatAccountId: string;
-  accountName: string;
-  institutionName: string;
-  fiatAccountType: FiatAccountType;
-};
+  fiatAccountId: string
+  accountName: string
+  institutionName: string
+  fiatAccountType: FiatAccountType
+}
 
 /*
 / Transfer Endpoint Types
@@ -144,129 +146,129 @@ export type ObfuscatedFiatAccountData = {
 
 // Request body for POST /transfer/in and POST /transfer/out
 export type TransferRequestBody = {
-  fiatAccountId: string;
-  quoteId: string;
-};
+  fiatAccountId: string
+  quoteId: string
+}
 
 // Response body for POST /transfer/in and POST /transfer/out
 export type TransferResponse = {
-  transferId: string;
-  transferStatus: TransferStatus;
-  transferAddress: string;
-};
+  transferId: string
+  transferStatus: TransferStatus
+  transferAddress: string
+}
 
 // Path parameters for GET /transfer/:transferId/status
 export type TransferStatusRequestParams = {
-  transferId: string;
-};
+  transferId: string
+}
 
 // Response body for GET /transfer/:transferId/status
 export type TransferStatusResponse = {
-  status: TransferStatus;
-  transferType: TransferType;
-  fiatType: FiatType;
-  cryptoType: CryptoType;
-  amountProvided: string;
-  amountReceived: string;
-  fee?: string;
-  fiatAccountId: string;
-  transferId: string;
-  transferAddress: string;
-};
+  status: TransferStatus
+  transferType: TransferType
+  fiatType: FiatType
+  cryptoType: CryptoType
+  amountProvided: string
+  amountReceived: string
+  fee?: string
+  fiatAccountId: string
+  transferId: string
+  transferAddress: string
+}
 
 /*
  * FiatConnect static type definitions.
  */
 
-export type FiatAccountId = string;
+export type FiatAccountId = string
 
 export enum TransferType {
-  TransferIn = "TransferIn",
-  TransferOut = "TransferOut",
+  TransferIn = 'TransferIn',
+  TransferOut = 'TransferOut',
 }
 
 export enum TransferStatus {
-  TransferStarted = "TransferStarted",
-  TransferFiatFundsDebited = "TransferFiatFundsDebited",
-  TransferSendingCryptoFunds = "TransferSendingCryptoFunds",
-  TransferAmlFailed = "TransferAmlFailed",
-  TransferReadyForUserToSendCryptoFunds = "TransferReadyForUserToSendCryptoFunds",
-  TransferReceivedCryptoFunds = "TransferReceivedCryptoFunds",
-  TransferComplete = "TransferComplete",
-  TransferFailed = "TransferFailed",
+  TransferStarted = 'TransferStarted',
+  TransferFiatFundsDebited = 'TransferFiatFundsDebited',
+  TransferSendingCryptoFunds = 'TransferSendingCryptoFunds',
+  TransferAmlFailed = 'TransferAmlFailed',
+  TransferReadyForUserToSendCryptoFunds = 'TransferReadyForUserToSendCryptoFunds',
+  TransferReceivedCryptoFunds = 'TransferReceivedCryptoFunds',
+  TransferComplete = 'TransferComplete',
+  TransferFailed = 'TransferFailed',
 }
 
 export enum KycStatus {
-  KycNotCreated = "KycNotCreated",
-  KycPending = "KycPending",
-  KycApproved = "KycApproved",
-  KycDenied = "KycDenied",
-  KycExpired = "KycExpired",
+  KycNotCreated = 'KycNotCreated',
+  KycPending = 'KycPending',
+  KycApproved = 'KycApproved',
+  KycDenied = 'KycDenied',
+  KycExpired = 'KycExpired',
 }
 
 export enum FeeType {
-  KycFee = "KycFee",
-  PlatformFee = "PlatformFee",
+  KycFee = 'KycFee',
+  PlatformFee = 'PlatformFee',
 }
 
 export enum FeeFrequency {
-  OneTime = "OneTime",
-  Recurring = "Recurring",
+  OneTime = 'OneTime',
+  Recurring = 'Recurring',
 }
 
 // Types for request bodies sent from FiatConnect webhooks
 export enum WebhookEventType {
-  KycStatusEvent = "KycStatusEvent",
-  TransferInStatusEvent = "TransferInStatusEvent",
-  TransferOutStatusEvent = "TransferOutStatusEvent",
+  KycStatusEvent = 'KycStatusEvent',
+  TransferInStatusEvent = 'TransferInStatusEvent',
+  TransferOutStatusEvent = 'TransferOutStatusEvent',
 }
 
 type WebhookEventPayload = {
   [WebhookEventType.KycStatusEvent]: {
-    kycSchema: KycSchema;
-    kycStatus: KycStatus;
-  };
-  [WebhookEventType.TransferInStatusEvent]: TransferStatusResponse;
-  [WebhookEventType.TransferOutStatusEvent]: TransferStatusResponse;
-};
+    kycSchema: KycSchema
+    kycStatus: KycStatus
+  }
+  [WebhookEventType.TransferInStatusEvent]: TransferStatusResponse
+  [WebhookEventType.TransferOutStatusEvent]: TransferStatusResponse
+}
 
 export type WebhookRequestBody<T extends WebhookEventType> = {
-  eventType: T;
-  provider: string;
-  eventId: string;
-  accountAddress: string;
-  payload: WebhookEventPayload[T];
-};
+  eventType: T
+  provider: string
+  eventId: string
+  accountAddress: string
+  payload: WebhookEventPayload[T]
+}
 
 // Errors returned by FiatConnect endpoints
 export enum FiatConnectError {
-  InvalidSignature = "InvalidSignature",
-  GeoNotSupported = "GeoNotSupported",
-  CryptoAmountTooLow = "CryptoAmountTooLow",
-  CryptoAmountTooHigh = "CryptoAmountTooHigh",
-  FiatAmountTooLow = "FiatAmountTooLow",
-  FiatAmountTooHigh = "FiatAmountTooHigh",
-  CryptoNotSupported = "CryptoNotSupported",
-  FiatNotSupported = "FiatNotSupported",
-  UnsupportedSchema = "UnsupportedSchema",
-  InvalidSchema = "InvalidSchema",
-  ResourceExists = "ResourceExists",
-  ResourceNotFound = "ResourceNotFound",
-  TransferNotAllowed = "TransferNotAllowed",
-  KycExpired = "KycExpired",
-  Unauthorized = "Unauthorized",
-  SessionExpired = "SessionExpired",
-  InvalidParameters = "InvalidParameters",
-  ContractLoginNotSupported = "ContractLoginNotSupported",
-  NonceInUse = "NonceInUse",
-  IssuedTooEarly = "IssuedTooEarly",
-  ExpirationTooLong = "ExpirationTooLong",
-  InvalidFiatAccount = "InvalidFiatAccount",
+  InvalidSignature = 'InvalidSignature',
+  GeoNotSupported = 'GeoNotSupported',
+  CryptoAmountTooLow = 'CryptoAmountTooLow',
+  CryptoAmountTooHigh = 'CryptoAmountTooHigh',
+  FiatAmountTooLow = 'FiatAmountTooLow',
+  FiatAmountTooHigh = 'FiatAmountTooHigh',
+  CryptoNotSupported = 'CryptoNotSupported',
+  FiatNotSupported = 'FiatNotSupported',
+  UnsupportedSchema = 'UnsupportedSchema',
+  InvalidSchema = 'InvalidSchema',
+  ResourceExists = 'ResourceExists',
+  ResourceNotFound = 'ResourceNotFound',
+  TransferNotAllowed = 'TransferNotAllowed',
+  KycExpired = 'KycExpired',
+  Unauthorized = 'Unauthorized',
+  SessionExpired = 'SessionExpired',
+  InvalidParameters = 'InvalidParameters',
+  ContractLoginNotSupported = 'ContractLoginNotSupported',
+  NonceInUse = 'NonceInUse',
+  IssuedTooEarly = 'IssuedTooEarly',
+  ExpirationTooLong = 'ExpirationTooLong',
+  InvalidFiatAccount = 'InvalidFiatAccount',
 }
 
 export enum Network {
-  Alfajores = "Alfajores",
-  Mainnet = "Mainnet",
+  Alfajores = 'Alfajores',
+  Mainnet = 'Mainnet',
 }
 
 /*
@@ -281,139 +283,139 @@ export enum Network {
  */
 
 export enum FiatType {
-  USD = "USD",
-  EUR = "EUR",
-  BRL = "BRL",
-  GNF = "GNF",
-  INR = "INR",
-  NGN = "NGN",
-  GHS = "GHS",
-  KES = "KES",
-  ZAR = "ZAR",
-  PHP = "PHP",
-  UGX = "UGX",
-  GBP = "GBP",
-  XOF = "XOF",
-  RWF = "RWF",
-  CNY = "CNY",
-  XAF = "XAF",
-  ARS = "ARS",
-  BOB = "BOB",
-  CLP = "CLP",
-  COP = "COP",
-  FKP = "FKP",
-  GYD = "GYD",
-  PYG = "PYG",
-  PEN = "PEN",
-  SRD = "SRD",
-  UYU = "UYU",
-  VES = "VES",
-  MXN = "MXN",
-  PAB = "PAB",
+  USD = 'USD',
+  EUR = 'EUR',
+  BRL = 'BRL',
+  GNF = 'GNF',
+  INR = 'INR',
+  NGN = 'NGN',
+  GHS = 'GHS',
+  KES = 'KES',
+  ZAR = 'ZAR',
+  PHP = 'PHP',
+  UGX = 'UGX',
+  GBP = 'GBP',
+  XOF = 'XOF',
+  RWF = 'RWF',
+  CNY = 'CNY',
+  XAF = 'XAF',
+  ARS = 'ARS',
+  BOB = 'BOB',
+  CLP = 'CLP',
+  COP = 'COP',
+  FKP = 'FKP',
+  GYD = 'GYD',
+  PYG = 'PYG',
+  PEN = 'PEN',
+  SRD = 'SRD',
+  UYU = 'UYU',
+  VES = 'VES',
+  MXN = 'MXN',
+  PAB = 'PAB',
 }
 
 export enum CryptoType {
-  cUSD = "cUSD",
-  cEUR = "cEUR",
-  cREAL = "cREAL",
-  CELO = "CELO",
+  cUSD = 'cUSD',
+  cEUR = 'cEUR',
+  cREAL = 'cREAL',
+  CELO = 'CELO',
 }
 
 export enum KycSchema {
-  PersonalDataAndDocuments = "PersonalDataAndDocuments",
+  PersonalDataAndDocuments = 'PersonalDataAndDocuments',
 }
 
 export enum FiatAccountSchema {
-  AccountNumber = "AccountNumber",
-  MobileMoney = "MobileMoney",
-  DuniaWallet = "DuniaWallet",
-  IBANNumber = "IBANNumber",
-  IFSCAccount = "IFSCAccount",
+  AccountNumber = 'AccountNumber',
+  MobileMoney = 'MobileMoney',
+  DuniaWallet = 'DuniaWallet',
+  IBANNumber = 'IBANNumber',
+  IFSCAccount = 'IFSCAccount',
 }
 
 export enum FiatAccountType {
-  BankAccount = "BankAccount",
-  MobileMoney = "MobileMoney",
-  DuniaWallet = "DuniaWallet",
+  BankAccount = 'BankAccount',
+  MobileMoney = 'MobileMoney',
+  DuniaWallet = 'DuniaWallet',
 }
 
 export interface RequiredFiatAccountSchemaFields {
-  accountName: string;
-  institutionName: string;
-  fiatAccountType: FiatAccountType;
+  accountName: string
+  institutionName: string
+  fiatAccountType: FiatAccountType
 }
 
 type AccountNumber = RequiredFiatAccountSchemaFields & {
-  accountNumber: string;
-  country: string;
-  fiatAccountType: FiatAccountType.BankAccount;
-};
+  accountNumber: string
+  country: string
+  fiatAccountType: FiatAccountType.BankAccount
+}
 
 type MobileMoney = RequiredFiatAccountSchemaFields & {
-  mobile: string;
-  country: string;
-  operator: SupportedOperatorEnum;
-  fiatAccountType: FiatAccountType.MobileMoney;
-};
+  mobile: string
+  country: string
+  operator: SupportedOperatorEnum
+  fiatAccountType: FiatAccountType.MobileMoney
+}
 
 type DuniaWallet = RequiredFiatAccountSchemaFields & {
-  mobile: string;
-  fiatAccountType: FiatAccountType.DuniaWallet;
-};
+  mobile: string
+  fiatAccountType: FiatAccountType.DuniaWallet
+}
 
 type IBANNumber = RequiredFiatAccountSchemaFields & {
-  iban: string;
-  country: string;
-  fiatAccountType: FiatAccountType.BankAccount;
-};
+  iban: string
+  country: string
+  fiatAccountType: FiatAccountType.BankAccount
+}
 
 type IFSCAccount = RequiredFiatAccountSchemaFields & {
-  ifsc: string;
-  accountNumber: string;
-  country: string;
-  fiatAccountType: FiatAccountType.BankAccount;
-};
+  ifsc: string
+  accountNumber: string
+  country: string
+  fiatAccountType: FiatAccountType.BankAccount
+}
 
 export enum SupportedOperatorEnum {
-  ORANGE = "ORANGE",
-  MOOV = "MOOV",
-  MTN = "MTN",
-  WAVE = "WAVE",
+  ORANGE = 'ORANGE',
+  MOOV = 'MOOV',
+  MTN = 'MTN',
+  WAVE = 'WAVE',
 }
 
 // Map of all supported fiat account schemas to the corresponding schema type. List must be manually updated
 export type FiatAccountSchemas = {
-  [FiatAccountSchema.AccountNumber]: AccountNumber;
-  [FiatAccountSchema.MobileMoney]: MobileMoney;
-  [FiatAccountSchema.DuniaWallet]: DuniaWallet;
-  [FiatAccountSchema.IBANNumber]: IBANNumber;
-  [FiatAccountSchema.IFSCAccount]: IFSCAccount;
-};
+  [FiatAccountSchema.AccountNumber]: AccountNumber
+  [FiatAccountSchema.MobileMoney]: MobileMoney
+  [FiatAccountSchema.DuniaWallet]: DuniaWallet
+  [FiatAccountSchema.IBANNumber]: IBANNumber
+  [FiatAccountSchema.IFSCAccount]: IFSCAccount
+}
 
 // https://github.com/fiatconnect/specification/blob/5929f7ea8ca99796608e89a9c8da4c1033dacf05/fiatconnect-api.md#728-personaldataanddocuments
 interface PersonalDataAndDocumentsKyc {
-  firstName: string;
-  middleName?: string;
-  lastName: string;
+  firstName: string
+  middleName?: string
+  lastName: string
   dateOfBirth: {
-    day: string;
-    month: string;
-    year: string;
-  };
+    day: string
+    month: string
+    year: string
+  }
   address: {
-    address1: string;
-    address2?: string;
-    isoCountryCode: string;
-    isoRegionCode: string;
-    city: string;
-    postalCode?: string;
-  };
-  phoneNumber: string;
-  selfieDocument: string;
-  identificationDocument: string;
+    address1: string
+    address2?: string
+    isoCountryCode: string
+    isoRegionCode: string
+    city: string
+    postalCode?: string
+  }
+  phoneNumber: string
+  selfieDocument: string
+  identificationDocument: string
 }
 
 // Map of all supported KYC schemas to the corresponding schema type. List must be manually updated
 export type KycSchemas = {
-  [KycSchema.PersonalDataAndDocuments]: PersonalDataAndDocumentsKyc;
-};
+  [KycSchema.PersonalDataAndDocuments]: PersonalDataAndDocumentsKyc
+}
