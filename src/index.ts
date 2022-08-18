@@ -238,7 +238,7 @@ export type WebhookRequestBody<T extends WebhookEventType> = {
   eventType: T
   provider: string
   eventId: string
-  accountAddress: string
+  address: string
   payload: WebhookEventPayload[T]
 }
 
