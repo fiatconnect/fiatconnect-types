@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.1](https://github.com/fiatconnect/fiatconnect-types/compare/v7.0.0...v7.0.1) (2022-08-18)
+
+
+### Bug Fixes
+
+* **webhook:** accountAddress => address ([#58](https://github.com/fiatconnect/fiatconnect-types/issues/58)) ([9999edb](https://github.com/fiatconnect/fiatconnect-types/commit/9999edbd3eec3314687c6aabf0eebd1907c30ac7))
+
 ## [7.0.0](https://github.com/fiatconnect/fiatconnect-types/compare/v6.1.0...v7.0.0) (2022-08-03)
 
 
