@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.2](https://github.com/fiatconnect/fiatconnect-types/compare/v7.0.1...v7.0.2) (2022-08-22)
+
+
+### Bug Fixes
+
+* **webhook:** add timestamp ([#61](https://github.com/fiatconnect/fiatconnect-types/issues/61)) ([482e205](https://github.com/fiatconnect/fiatconnect-types/commit/482e2058210ca6e2311ace84581d034c50e2f62f))
+
 ### [7.0.1](https://github.com/fiatconnect/fiatconnect-types/compare/v7.0.0...v7.0.1) (2022-08-18)
 
 
