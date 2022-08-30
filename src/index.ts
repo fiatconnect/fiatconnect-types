@@ -54,6 +54,9 @@ export type QuoteResponse = {
     guaranteedUntil: string
     quoteId: string
     transferType: TransferType
+    fee?: string
+    feeType?: FeeType
+    feeFrequency?: FeeFrequency
   }
   kyc: {
     kycRequired: boolean
@@ -81,9 +84,6 @@ export type QuoteErrorResponse = {
 // Helper type
 export type FiatAccountTypeQuoteData = {
   fiatAccountSchemas: QuoteResponseFiatAccountSchema[]
-  fee?: string
-  feeType?: FeeType
-  feeFrequency?: FeeFrequency
   settlementTimeLowerBound?: string // ISO-8601 Duration
   settlementTimeUpperBound?: string // ISO-8601 Duration
 }
