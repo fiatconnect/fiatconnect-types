@@ -33,3 +33,4 @@ jobs:
       - run: yarn
       - run: yarn typecheck
       - run: yarn lint
+      - run: yarn format:check
