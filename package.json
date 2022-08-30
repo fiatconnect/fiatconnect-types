@@ -4,7 +4,7 @@
   "description": "Types used in the FiatConnect specification. Offered as standalone module for payment providers and wallets to both use for FiatConnect APIs and integrations.",
   "scripts": {
     "typecheck": "tsc",
-    "prepublish": "yarn typecheck",
+    "prepublish": "rm -rf dist && tsc",
     "lint": "eslint --ext=.tsx,.ts src/",
     "release": "standard-version --skip.tag"
   },
