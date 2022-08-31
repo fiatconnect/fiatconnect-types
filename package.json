@@ -5,7 +5,7 @@
   "scripts": {
     "typecheck": "tsc",
     "prepublish": "rm -rf dist && tsc",
-    "publish": "npx semantic-release",
+    "release": "npx semantic-release",
     "lint": "eslint --ext=.tsx,.ts src/",
     "format:check": "prettier --check .",
     "format": "prettier --loglevel error --write ."
