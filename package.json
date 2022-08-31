@@ -27,7 +27,6 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@semantic-release/npm": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
     "@valora/eslint-config-typescript": "^1.0.1",
     "@valora/prettier-config": "^0.0.1",
