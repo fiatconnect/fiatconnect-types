@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.3](https://github.com/fiatconnect/fiatconnect-types/compare/v7.0.2...v7.0.3) (2022-08-30)
+
+
+### Bug Fixes
+
+* **fees:** updated fee fields' location in quote request/response ([#65](https://github.com/fiatconnect/fiatconnect-types/issues/65)) ([51f5583](https://github.com/fiatconnect/fiatconnect-types/commit/51f55832d1d295f4500fae09e19c834ff7e46024)), closes [fiatconnect/specification#78](https://github.com/fiatconnect/specification/issues/78)
+* **lint:** add missing deps for linting ([#66](https://github.com/fiatconnect/fiatconnect-types/issues/66)) ([030f375](https://github.com/fiatconnect/fiatconnect-types/commit/030f37575fabc53196153a650d4f9aa61288d717))
+
 ### [7.0.2](https://github.com/fiatconnect/fiatconnect-types/compare/v7.0.1...v7.0.2) (2022-08-22)
 
 
