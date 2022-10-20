@@ -220,9 +220,9 @@ export enum FeeFrequency {
 
 // Types for request bodies sent from FiatConnect webhooks
 export enum WebhookEventType {
-  KycStatusEvent = 'KycStatusEvent',
-  TransferInStatusEvent = 'TransferInStatusEvent',
-  TransferOutStatusEvent = 'TransferOutStatusEvent',
+  KycStatusEvent = 'WebhookKycStatusEvent',
+  TransferInStatusEvent = 'WebhookTransferInStatusEvent',
+  TransferOutStatusEvent = 'WebhookTransferOutStatusEvent',
 }
 
 type WebhookEventPayload = {
