@@ -38,6 +38,7 @@ export interface AuthRequestBody {
 export type QuoteRequestBody = {
   fiatType: FiatType
   cryptoType: CryptoType
+  address: string
   fiatAmount?: string
   cryptoAmount?: string
   country: string
