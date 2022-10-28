@@ -39,7 +39,9 @@ export type TransferResponse = z.infer<typeof transferResponseSchema>
 export const transferStatusRequestParamsSchema = z.object({
   transferId: z.string(),
 })
-export type TransferStatusRequestParams = z.infer<typeof transferStatusRequestParamsSchema>
+export type TransferStatusRequestParams = z.infer<
+  typeof transferStatusRequestParamsSchema
+>
 
 export const transferStatusResponseSchema = z.object({
   status: transferStatusSchema,
@@ -53,5 +55,6 @@ export const transferStatusResponseSchema = z.object({
   transferId: z.string(),
   transferAddress: z.string(),
 })
-export type TransferStatusResponse = z.infer<typeof transferStatusResponseSchema>
-
+export type TransferStatusResponse = z.infer<
+  typeof transferStatusResponseSchema
+>

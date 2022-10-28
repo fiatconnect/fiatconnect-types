@@ -9,7 +9,6 @@ export enum WebhookEventType {
 }
 export const webhookEventTypeSchema = z.nativeEnum(WebhookEventType)
 
-
 export const webhookRequestBodySchema = z.union([
   z.object({
     eventType: z.literal(WebhookEventType.KycStatusEvent),
@@ -40,4 +39,3 @@ export const webhookRequestBodySchema = z.union([
   }),
 ])
 export type WebhookRequestBody = z.infer<typeof webhookRequestBodySchema>
-

@@ -44,10 +44,13 @@ export const personalDataAndDocumentsKycSchema = z.object({
   selfieDocument: z.string(),
   identificationDocument: z.string(),
 })
-export type PersonalDataAndDocumentsKyc = z.infer<typeof personalDataAndDocumentsKycSchema>
+export type PersonalDataAndDocumentsKyc = z.infer<
+  typeof personalDataAndDocumentsKycSchema
+>
 
 export const kycSchemasSchema = z.object({
-  [kycSchemaSchema.enum.PersonalDataAndDocuments]: personalDataAndDocumentsKycSchema
+  [kycSchemaSchema.enum.PersonalDataAndDocuments]:
+    personalDataAndDocumentsKycSchema,
 })
 export type KycSchemas = z.infer<typeof kycSchemasSchema>
 
@@ -66,5 +69,3 @@ export const kycStatusResponseSchema = z.object({
   kycStatus: kycStatusSchema,
 })
 export type KycStatusResponse = z.infer<typeof kycStatusResponseSchema>
-
-

@@ -33,8 +33,6 @@ export enum SupportedOperatorEnum {
 }
 export const supportedOperatorEnumSchema = z.nativeEnum(SupportedOperatorEnum)
 
-
-
 const requiredFiatAccountSchemaFieldsSchema = z.object({
   accountName: z.string(),
   institutionName: z.string(),
@@ -58,7 +56,6 @@ export const duniaWalletSchema = requiredFiatAccountSchemaFieldsSchema.and(
 )
 export type DuniaWallet = z.infer<typeof duniaWalletSchema>
 
-
 export const mobileMoneySchema = requiredFiatAccountSchemaFieldsSchema.and(
   z.object({
     mobile: z.string(),
@@ -69,7 +66,6 @@ export const mobileMoneySchema = requiredFiatAccountSchemaFieldsSchema.and(
 )
 export type MobileMoney = z.infer<typeof mobileMoneySchema>
 
-
 export const iBANNumberSchema = requiredFiatAccountSchemaFieldsSchema.and(
   z.object({
     iban: z.string(),
@@ -78,7 +74,6 @@ export const iBANNumberSchema = requiredFiatAccountSchemaFieldsSchema.and(
   }),
 )
 export type IBANNumber = z.infer<typeof iBANNumberSchema>
-
 
 export const iFSCAccountSchema = requiredFiatAccountSchemaFieldsSchema.and(
   z.object({
@@ -89,7 +84,6 @@ export const iFSCAccountSchema = requiredFiatAccountSchemaFieldsSchema.and(
   }),
 )
 export type IFSCAccount = z.infer<typeof iFSCAccountSchema>
-
 
 // Map of all supported fiat account schemas to the corresponding schema type. List must be manually updated
 export const fiatAccountSchemasSchema = z.object({
@@ -111,7 +105,9 @@ export const obfuscatedFiatAccountDataSchema = z.object({
   fiatAccountType: fiatAccountTypeSchema,
   fiatAccountSchema: fiatAccountSchemaSchema,
 })
-export type ObfuscatedFiatAccountData = z.infer<typeof obfuscatedFiatAccountDataSchema>
+export type ObfuscatedFiatAccountData = z.infer<
+  typeof obfuscatedFiatAccountDataSchema
+>
 
 /*
 / Fiat Account Endpoint Types
@@ -139,17 +135,26 @@ export const postFiatAccountRequestBodySchema = z.union([
     data: iFSCAccountSchema,
   }),
 ])
-export type PostFiatAccountRequestBody = z.infer<typeof postFiatAccountRequestBodySchema>
+export type PostFiatAccountRequestBody = z.infer<
+  typeof postFiatAccountRequestBodySchema
+>
 
 export const deleteFiatAccountRequestParamsSchema = z.object({
   fiatAccountId: fiatAccountIdSchema,
 })
-export type DeleteFiatAccountRequestParams = z.infer<typeof deleteFiatAccountRequestParamsSchema>
+export type DeleteFiatAccountRequestParams = z.infer<
+  typeof deleteFiatAccountRequestParamsSchema
+>
 
-
-
-export const getFiatAccountsResponseSchema = z.record(fiatAccountTypeSchema, z.array(obfuscatedFiatAccountDataSchema))
-export type GetFiatAccountsResponse = z.infer<typeof getFiatAccountsResponseSchema>
+export const getFiatAccountsResponseSchema = z.record(
+  fiatAccountTypeSchema,
+  z.array(obfuscatedFiatAccountDataSchema),
+)
+export type GetFiatAccountsResponse = z.infer<
+  typeof getFiatAccountsResponseSchema
+>
 
 export const postFiatAccountResponseSchema = obfuscatedFiatAccountDataSchema
-export type PostFiatAccountResponse = z.infer<typeof postFiatAccountResponseSchema>
+export type PostFiatAccountResponse = z.infer<
+  typeof postFiatAccountResponseSchema
+>
