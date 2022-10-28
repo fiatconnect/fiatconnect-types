@@ -22,3 +22,49 @@ export enum KycSchema {
   PersonalDataAndDocuments = 'PersonalDataAndDocuments',
 }
 export const kycSchemaSchema = z.nativeEnum(KycSchema)
+
+export const personalDataAndDocumentsKycSchema = z.object({
+  firstName: z.string(),
+  middleName: z.string().optional(),
+  lastName: z.string(),
+  dateOfBirth: z.object({
+    day: z.string(),
+    month: z.string(),
+    year: z.string(),
+  }),
+  address: z.object({
+    address1: z.string(),
+    address2: z.string().optional(),
+    isoCountryCode: z.string(),
+    isoRegionCode: z.string(),
+    city: z.string(),
+    postalCode: z.string().optional(),
+  }),
+  phoneNumber: z.string(),
+  selfieDocument: z.string(),
+  identificationDocument: z.string(),
+})
+export type PersonalDataAndDocumentsKyc = z.infer<typeof personalDataAndDocumentsKycSchema>
+
+export const kycSchemasSchema = z.object({
+  [kycSchemaSchema.enum.PersonalDataAndDocuments]: personalDataAndDocumentsKycSchema
+})
+export type KycSchemas = z.infer<typeof kycSchemasSchema>
+
+/*
+/ KYC Endpoint Types
+*/
+
+// Path parameters for all KYC endpoints
+export const kycRequestParamsSchema = z.object({
+  kycSchema: kycSchemaSchema,
+})
+export type KycRequestParams = z.infer<typeof kycRequestParamsSchema>
+
+// Response body for POST /kyc/:kycSchema and GET /kyc/:kycSchema/status
+export const kycStatusResponseSchema = z.object({
+  kycStatus: kycStatusSchema,
+})
+export type KycStatusResponse = z.infer<typeof kycStatusResponseSchema>
+
+
