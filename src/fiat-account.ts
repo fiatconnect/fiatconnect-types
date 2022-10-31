@@ -9,6 +9,8 @@ import { z } from 'zod'
  *
  */
 
+
+// When adding new schemas remember to also update fiatAccountSchemasSchema and postFiatAccountRequestBodySchema
 export enum FiatAccountSchema {
   AccountNumber = 'AccountNumber',
   MobileMoney = 'MobileMoney',
@@ -87,11 +89,11 @@ export type IFSCAccount = z.infer<typeof iFSCAccountSchema>
 
 // Map of all supported fiat account schemas to the corresponding schema type. List must be manually updated
 export const fiatAccountSchemasSchema = z.object({
-  [fiatAccountSchemaSchema.enum.AccountNumber]: accountNumberSchema,
-  [fiatAccountSchemaSchema.enum.MobileMoney]: mobileMoneySchema,
-  [fiatAccountSchemaSchema.enum.DuniaWallet]: duniaWalletSchema,
-  [fiatAccountSchemaSchema.enum.IBANNumber]: iBANNumberSchema,
-  [fiatAccountSchemaSchema.enum.IFSCAccount]: iFSCAccountSchema,
+  [FiatAccountSchema.AccountNumber]: accountNumberSchema,
+  [FiatAccountSchema.MobileMoney]: mobileMoneySchema,
+  [FiatAccountSchema.DuniaWallet]: duniaWalletSchema,
+  [FiatAccountSchema.IBANNumber]: iBANNumberSchema,
+  [FiatAccountSchema.IFSCAccount]: iFSCAccountSchema,
 })
 export type FiatAccountSchemas = z.infer<typeof fiatAccountSchemasSchema>
 
@@ -99,7 +101,7 @@ export const fiatAccountIdSchema = z.string()
 export type FiatAccountId = z.infer<typeof fiatAccountIdSchema>
 
 export const obfuscatedFiatAccountDataSchema = z.object({
-  fiatAccountId: z.string(),
+  fiatAccountId: fiatAccountIdSchema,
   accountName: z.string(),
   institutionName: z.string(),
   fiatAccountType: fiatAccountTypeSchema,
@@ -113,6 +115,7 @@ export type ObfuscatedFiatAccountData = z.infer<
 / Fiat Account Endpoint Types
 */
 
+// must be manually updated with new schemas
 export const postFiatAccountRequestBodySchema = z.union([
   z.object({
     fiatAccountSchema: z.literal(fiatAccountSchemaSchema.enum.AccountNumber),

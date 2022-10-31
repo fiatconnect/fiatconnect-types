@@ -90,6 +90,7 @@ export const quoteErrorResponseSchema = z.object({
 })
 export type QuoteErrorResponse = z.infer<typeof quoteErrorResponseSchema>
 
+// Helper type
 export const quoteResponseKycSchemaSchema = z.object({
   kycSchema: kycSchemaSchema,
   allowedValues: z.record(z.array(z.string())),

@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { fiatAccountIdSchema } from './fiat-account'
 import { fiatTypeSchema, cryptoTypeSchema } from './quote'
 
 export enum TransferType {
@@ -24,7 +25,7 @@ export const transferStatusSchema = z.nativeEnum(TransferStatus)
 */
 
 export const transferRequestBodySchema = z.object({
-  fiatAccountId: z.string(),
+  fiatAccountId: fiatAccountIdSchema,
   quoteId: z.string(),
 })
 export type TransferRequestBody = z.infer<typeof transferRequestBodySchema>
@@ -51,7 +52,7 @@ export const transferStatusResponseSchema = z.object({
   amountProvided: z.string(),
   amountReceived: z.string(),
   fee: z.string().optional(),
-  fiatAccountId: z.string(),
+  fiatAccountId: fiatAccountIdSchema,
   transferId: z.string(),
   transferAddress: z.string(),
 })

@@ -18,6 +18,7 @@ export const kycStatusSchema = z.nativeEnum(KycStatus)
  *
  */
 
+// When adding new schemas be sure to also update kycSchemasSchema
 export enum KycSchema {
   PersonalDataAndDocuments = 'PersonalDataAndDocuments',
 }
