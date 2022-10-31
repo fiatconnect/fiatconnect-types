@@ -78,6 +78,7 @@ export const quoteRequestBodySchema = z.object({
   cryptoAmount: z.string().optional(),
   country: z.string(),
   region: z.string().optional(),
+  preview: z.boolean().optional()
 })
 export type QuoteRequestBody = z.infer<typeof quoteRequestBodySchema>
 
