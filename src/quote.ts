@@ -78,7 +78,6 @@ export const quoteRequestBodySchema = z.object({
   cryptoAmount: z.string().optional(),
   country: z.string(),
   region: z.string().optional(),
-  preview: z.boolean().optional()
 })
 export type QuoteRequestBody = z.infer<typeof quoteRequestBodySchema>
 
@@ -125,7 +124,7 @@ export const quoteResponseSchema = z.object({
     fiatAmount: z.string(),
     cryptoAmount: z.string(),
     guaranteedUntil: z.string(),
-    quoteId: z.string().optional(),
+    quoteId: z.string(),
     transferType: transferTypeSchema,
     fee: z.string().optional(),
     feeType: feeTypeSchema.optional(),
