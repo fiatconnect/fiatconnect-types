@@ -33,7 +33,6 @@ export enum Network {
 }
 export const networkSchema = z.nativeEnum(Network)
 
-
 /*
  * FiatConnect dynamic type definitions.
  *

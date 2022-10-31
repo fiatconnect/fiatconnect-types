@@ -1,5 +1,9 @@
 import { z } from 'zod'
-import { cryptoTypeSchema, fiatConnectErrorSchema, fiatTypeSchema } from './common'
+import {
+  cryptoTypeSchema,
+  fiatConnectErrorSchema,
+  fiatTypeSchema,
+} from './common'
 import { fiatAccountSchemaSchema, fiatAccountTypeSchema } from './fiat-account'
 import { kycSchemaSchema } from './kyc'
 import { transferTypeSchema } from './transfer'
