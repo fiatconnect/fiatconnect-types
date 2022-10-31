@@ -48,5 +48,8 @@
       "main"
     ],
     "preset": "conventionalcommits"
+  },
+  "dependencies": {
+    "zod": "^3.19.1"
   }
 }
