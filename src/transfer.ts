@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { fiatAccountIdSchema } from './fiat-account'
-import { fiatTypeSchema, cryptoTypeSchema } from './quote'
+import { fiatTypeSchema, cryptoTypeSchema } from './common'
 
 export enum TransferType {
   TransferIn = 'TransferIn',
