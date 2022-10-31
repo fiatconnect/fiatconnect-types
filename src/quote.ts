@@ -125,7 +125,7 @@ export const quoteResponseSchema = z.object({
     fiatAmount: z.string(),
     cryptoAmount: z.string(),
     guaranteedUntil: z.string(),
-    quoteId: z.string(),
+    quoteId: z.string().optional(),
     transferType: transferTypeSchema,
     fee: z.string().optional(),
     feeType: feeTypeSchema.optional(),
