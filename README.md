@@ -35,7 +35,7 @@ export async function getTransferStatus(
 
 ## Zod Schemas
 
-For each type exported from this package there is also a cooresponding [zod schema](https://www.npmjs.com/package/zod) with the name `{typeWithFirstCharLowercase}Schema`. So for example `TransferStatus` has `transferStatusSchema`.
+For each type exported from this package there is also a corresponding [zod schema](https://www.npmjs.com/package/zod) with the name `{typeWithFirstCharLowercase}Schema`. So for example `TransferStatus` has `transferStatusSchema`.
 
 ```typescript
 import {

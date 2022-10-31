@@ -22,15 +22,9 @@ export const webhookRequestBodySchema = z.union([
     }),
   }),
   z.object({
-    eventType: z.literal(WebhookEventType.TransferInStatusEvent),
-    provider: z.string(),
-    eventId: z.string(),
-    timestamp: z.string(),
-    address: z.string(),
-    payload: transferStatusResponseSchema,
-  }),
-  z.object({
-    eventType: z.literal(WebhookEventType.TransferOutStatusEvent),
+    eventType: z
+      .literal(WebhookEventType.TransferInStatusEvent)
+      .or(z.literal(WebhookEventType.TransferOutStatusEvent)),
     provider: z.string(),
     eventId: z.string(),
     timestamp: z.string(),
