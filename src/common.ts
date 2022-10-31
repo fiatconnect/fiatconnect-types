@@ -25,13 +25,17 @@ export enum FiatConnectError {
   ExpirationTooLong = 'ExpirationTooLong',
   InvalidFiatAccount = 'InvalidFiatAccount',
 }
-export const fiatConnectErrorSchema = z.nativeEnum(FiatConnectError)
+export const fiatConnectErrorSchema = z.nativeEnum(FiatConnectError, {
+  description: 'fiatConnectErrorSchema',
+})
 
 export enum Network {
   Alfajores = 'Alfajores',
   Mainnet = 'Mainnet',
 }
-export const networkSchema = z.nativeEnum(Network)
+export const networkSchema = z.nativeEnum(Network, {
+  description: 'networkSchema',
+})
 
 /*
  * FiatConnect dynamic type definitions.
@@ -73,7 +77,9 @@ export enum FiatType {
   MXN = 'MXN',
   PAB = 'PAB',
 }
-export const fiatTypeSchema = z.nativeEnum(FiatType)
+export const fiatTypeSchema = z.nativeEnum(FiatType, {
+  description: 'fiatTypeSchema',
+})
 
 export enum CryptoType {
   cUSD = 'cUSD',
@@ -81,4 +87,6 @@ export enum CryptoType {
   cREAL = 'cREAL',
   CELO = 'CELO',
 }
-export const cryptoTypeSchema = z.nativeEnum(CryptoType)
+export const cryptoTypeSchema = z.nativeEnum(CryptoType, {
+  description: 'cryptoTypeSchema',
+})

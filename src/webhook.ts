@@ -7,29 +7,34 @@ export enum WebhookEventType {
   TransferInStatusEvent = 'WebhookTransferInStatusEvent',
   TransferOutStatusEvent = 'WebhookTransferOutStatusEvent',
 }
-export const webhookEventTypeSchema = z.nativeEnum(WebhookEventType)
+export const webhookEventTypeSchema = z.nativeEnum(WebhookEventType, {
+  description: 'webhookEventTypeSchema',
+})
 
-export const webhookRequestBodySchema = z.union([
-  z.object({
-    eventType: z.literal(WebhookEventType.KycStatusEvent),
-    provider: z.string(),
-    eventId: z.string(),
-    timestamp: z.string(),
-    address: z.string(),
-    payload: z.object({
-      kycSchema: kycSchemaSchema,
-      kycStatus: kycStatusSchema,
+export const webhookRequestBodySchema = z.union(
+  [
+    z.object({
+      eventType: z.literal(WebhookEventType.KycStatusEvent),
+      provider: z.string(),
+      eventId: z.string(),
+      timestamp: z.string(),
+      address: z.string(),
+      payload: z.object({
+        kycSchema: kycSchemaSchema,
+        kycStatus: kycStatusSchema,
+      }),
     }),
-  }),
-  z.object({
-    eventType: z
-      .literal(WebhookEventType.TransferInStatusEvent)
-      .or(z.literal(WebhookEventType.TransferOutStatusEvent)),
-    provider: z.string(),
-    eventId: z.string(),
-    timestamp: z.string(),
-    address: z.string(),
-    payload: transferStatusResponseSchema,
-  }),
-])
+    z.object({
+      eventType: z
+        .literal(WebhookEventType.TransferInStatusEvent)
+        .or(z.literal(WebhookEventType.TransferOutStatusEvent)),
+      provider: z.string(),
+      eventId: z.string(),
+      timestamp: z.string(),
+      address: z.string(),
+      payload: transferStatusResponseSchema,
+    }),
+  ],
+  { description: 'webhookRequestBodySchema' },
+)
 export type WebhookRequestBody = z.infer<typeof webhookRequestBodySchema>
