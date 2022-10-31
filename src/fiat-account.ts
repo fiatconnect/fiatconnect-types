@@ -9,7 +9,6 @@ import { z } from 'zod'
  *
  */
 
-
 // When adding new schemas remember to also update fiatAccountSchemasSchema and postFiatAccountRequestBodySchema
 export enum FiatAccountSchema {
   AccountNumber = 'AccountNumber',
