@@ -33,6 +33,31 @@ export async function getTransferStatus(
 }
 ```
 
+## Zod Schemas
+
+For each type exported from this package there is also a cooresponding [zod schema](https://www.npmjs.com/package/zod) with the name `{typeWithFirstCharLowercase}Schema`. So for example `TransferStatus` has `transferStatusSchema`.
+
+```typescript
+import {
+  TransferStatus,
+  transferStatusSchema,
+} from '@fiatconnect/fiatconnect-types'
+import axios from 'axios'
+import { z } from 'zod'
+
+export async function getTransferStatus(
+  transferId: string,
+): Promise<TransferStatus> {
+  const response = await axios
+    .create({ url: 'https://MOCK-PROVIDER-URL.fake' })
+    .get(`/transfer/${transferId}/status`)
+
+  // Will throw an error if the status does not match the schema
+  transferStatusSchema.parse(response.data.status)
+  return response.data.status
+}
+```
+
 ## Contributing
 
 - [Reporting issues](https://github.com/fiatconnect/fiatconnect-types/issues)
