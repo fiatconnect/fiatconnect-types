@@ -37,6 +37,7 @@ export const quoteRequestBodySchema = z.object(
     cryptoAmount: z.string().optional(),
     country: z.string(),
     region: z.string().optional(),
+    preview: z.boolean().optional(),
   },
   { description: 'quoteRequestBodySchema' },
 )
@@ -91,29 +92,44 @@ export type FiatAccountTypeQuoteData = z.infer<
   typeof fiatAccountTypeQuoteDataSchema
 >
 
+const _quoteResponseQuoteObject = z.object({
+  fiatType: fiatTypeSchema,
+  cryptoType: cryptoTypeSchema,
+  fiatAmount: z.string(),
+  cryptoAmount: z.string(),
+  guaranteedUntil: z.string(),
+  transferType: transferTypeSchema,
+  fee: z.string().optional(),
+  feeType: feeTypeSchema.optional(),
+  feeFrequency: feeFrequencySchema.optional(),
+})
+
+const _quoteResponseKycObject = z.object({
+  kycRequired: z.boolean(),
+  kycSchemas: z.array(quoteResponseKycSchemaSchema),
+})
+
+const _quoteResponseFiatAccountObject = z.record(
+  fiatAccountTypeSchema,
+  fiatAccountTypeQuoteDataSchema,
+)
+
 export const quoteResponseSchema = z.object(
   {
-    quote: z.object({
-      fiatType: fiatTypeSchema,
-      cryptoType: cryptoTypeSchema,
-      fiatAmount: z.string(),
-      cryptoAmount: z.string(),
-      guaranteedUntil: z.string(),
-      quoteId: z.string(),
-      transferType: transferTypeSchema,
-      fee: z.string().optional(),
-      feeType: feeTypeSchema.optional(),
-      feeFrequency: feeFrequencySchema.optional(),
-    }),
-    kyc: z.object({
-      kycRequired: z.boolean(),
-      kycSchemas: z.array(quoteResponseKycSchemaSchema),
-    }),
-    fiatAccount: z.record(
-      fiatAccountTypeSchema,
-      fiatAccountTypeQuoteDataSchema,
-    ),
+    quote: _quoteResponseQuoteObject.and(z.object({ quoteId: z.string() })),
+    kyc: _quoteResponseKycObject,
+    fiatAccount: _quoteResponseFiatAccountObject,
   },
   { description: 'quoteResponseSchema' },
 )
 export type QuoteResponse = z.infer<typeof quoteResponseSchema>
+
+export const quotePreviewResponseSchema = z.object(
+  {
+    quote: _quoteResponseQuoteObject,
+    kyc: _quoteResponseKycObject,
+    fiatAccount: _quoteResponseFiatAccountObject,
+  },
+  { description: 'quotePreviewResponseSchema' },
+)
+export type QuotePreviewResponse = z.infer<typeof quotePreviewResponseSchema>
