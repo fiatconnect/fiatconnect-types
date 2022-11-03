@@ -11,29 +11,61 @@ export const webhookEventTypeSchema = z.nativeEnum(WebhookEventType, {
   description: 'webhookEventTypeSchema',
 })
 
+const webhookEventBodyBaseSchema = z.object({
+  provider: z.string(),
+  eventId: z.string(),
+  timestamp: z.string(),
+  address: z.string(),
+})
+
+export const webhookRequestBodyTransferInSchema = z.intersection(
+  webhookEventBodyBaseSchema,
+  z.object({
+    eventType: z.literal(WebhookEventType.TransferInStatusEvent),
+    payload: transferStatusResponseSchema,
+  }),
+  {
+    description: 'webhookRequestBodyTransferInSchema',
+  },
+)
+export type WebhookRequestBodyTransferIn = z.infer<
+  typeof webhookRequestBodyTransferInSchema
+>
+
+export const webhookRequestBodyTransferOutSchema = z.intersection(
+  webhookEventBodyBaseSchema,
+  z.object({
+    eventType: z.literal(WebhookEventType.TransferOutStatusEvent),
+    payload: transferStatusResponseSchema,
+  }),
+  {
+    description: 'webhookRequestBodyTransferOutSchema',
+  },
+)
+export type WebhookRequestBodyTransferOut = z.infer<
+  typeof webhookRequestBodyTransferOutSchema
+>
+
+export const webhookRequestBodyKycSchema = z.intersection(
+  webhookEventBodyBaseSchema,
+  z.object({
+    eventType: z.literal(WebhookEventType.KycStatusEvent),
+    payload: z.object({
+      kycSchema: kycSchemaSchema,
+      kycStatus: kycStatusSchema,
+    }),
+  }),
+  {
+    description: 'webhookRequestBodyKycSchema',
+  },
+)
+export type WebhookRequestBodyKyc = z.infer<typeof webhookRequestBodyKycSchema>
+
 export const webhookRequestBodySchema = z.union(
   [
-    z.object({
-      eventType: z.literal(WebhookEventType.KycStatusEvent),
-      provider: z.string(),
-      eventId: z.string(),
-      timestamp: z.string(),
-      address: z.string(),
-      payload: z.object({
-        kycSchema: kycSchemaSchema,
-        kycStatus: kycStatusSchema,
-      }),
-    }),
-    z.object({
-      eventType: z
-        .literal(WebhookEventType.TransferInStatusEvent)
-        .or(z.literal(WebhookEventType.TransferOutStatusEvent)),
-      provider: z.string(),
-      eventId: z.string(),
-      timestamp: z.string(),
-      address: z.string(),
-      payload: transferStatusResponseSchema,
-    }),
+    webhookRequestBodyTransferInSchema,
+    webhookRequestBodyTransferOutSchema,
+    webhookRequestBodyKycSchema,
   ],
   { description: 'webhookRequestBodySchema' },
 )
