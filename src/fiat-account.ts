@@ -16,6 +16,7 @@ export enum FiatAccountSchema {
   DuniaWallet = 'DuniaWallet',
   IBANNumber = 'IBANNumber',
   IFSCAccount = 'IFSCAccount',
+  PIXAccount = 'PIXAccount'
 }
 export const fiatAccountSchemaSchema = z.nativeEnum(FiatAccountSchema, {
   description: 'fiatAccountSchemaSchema',
@@ -30,6 +31,16 @@ export const fiatAccountTypeSchema = z.nativeEnum(FiatAccountType, {
   description: 'fiatAccountTypeSchema',
 })
 
+export enum PIXKeyTypeEnum {
+  EMAIL = 'EMAIL',
+  PHONE = 'PHONE',
+  CPF = 'CPF',
+  RANDOM = 'RANDOM',
+}
+export const pixKeyTypeEnumSchema = z.nativeEnum(PIXKeyTypeEnum, {
+  description: 'pixKeyTypeEnumSchema',
+})
+
 export enum SupportedOperatorEnum {
   ORANGE = 'ORANGE',
   MOOV = 'MOOV',
@@ -39,6 +50,17 @@ export enum SupportedOperatorEnum {
 export const supportedOperatorEnumSchema = z.nativeEnum(SupportedOperatorEnum, {
   description: 'supportedOperatorEnumSchema',
 })
+
+export const pixKeySchema = z.object(
+  {
+    keyType: pixKeyTypeEnumSchema,
+    key: z.string(),
+    fiatAccountType: z.literal(FiatAccountType.BankAccount),
+  },
+  { description: 'pixKeySchema' },
+)
+export type PixKey = z.infer<typeof pixKeySchema>
+
 
 const requiredFiatAccountSchemaFieldsSchema = z.object({
   accountName: z.string(),
@@ -115,6 +137,7 @@ export const fiatAccountSchemasSchema = z.object(
     [FiatAccountSchema.DuniaWallet]: duniaWalletSchema,
     [FiatAccountSchema.IBANNumber]: iBANNumberSchema,
     [FiatAccountSchema.IFSCAccount]: iFSCAccountSchema,
+    [FiatAccountSchema.PIXAccount]: pixKeySchema
   },
   { description: 'fiatAccountSchemasSchema' },
 )
