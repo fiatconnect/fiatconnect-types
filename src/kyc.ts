@@ -48,7 +48,10 @@ export const personalDataAndDocumentsKycSchema = z.object(
     }),
     phoneNumber: z.string(),
     selfieDocument: z.string(),
-    identificationDocument: z.string(),
+    // identificationDocument: z.string(),
+    identificationDocumentFront: z.string(),
+    identificationDocumentBack: z.string.string().optional(),
+    idNumber: z.string().optional()
   },
   { description: 'personalDataAndDocumentsKycSchema' },
 )
