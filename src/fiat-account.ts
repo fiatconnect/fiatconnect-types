@@ -51,22 +51,23 @@ export const supportedOperatorEnumSchema = z.nativeEnum(SupportedOperatorEnum, {
   description: 'supportedOperatorEnumSchema',
 })
 
-export const pixKeySchema = z.object(
-  {
-    keyType: pixKeyTypeEnumSchema,
-    key: z.string(),
-    fiatAccountType: z.literal(FiatAccountType.BankAccount),
-  },
-  { description: 'pixKeySchema' },
-)
-export type PixKey = z.infer<typeof pixKeySchema>
-
-
 const requiredFiatAccountSchemaFieldsSchema = z.object({
   accountName: z.string(),
   institutionName: z.string(),
   fiatAccountType: fiatAccountTypeSchema,
 })
+
+export const pixAccountSchema = requiredFiatAccountSchemaFieldsSchema.and(
+  z.object(
+    {
+      keyType: pixKeyTypeEnumSchema,
+      key: z.string(),
+      fiatAccountType: z.literal(FiatAccountType.BankAccount),
+    },
+    { description: 'pixAccountSchema' },
+  ),
+)
+export type PixKey = z.infer<typeof pixAccountSchema>
 
 export const accountNumberSchema = requiredFiatAccountSchemaFieldsSchema.and(
   z.object(
@@ -137,7 +138,7 @@ export const fiatAccountSchemasSchema = z.object(
     [FiatAccountSchema.DuniaWallet]: duniaWalletSchema,
     [FiatAccountSchema.IBANNumber]: iBANNumberSchema,
     [FiatAccountSchema.IFSCAccount]: iFSCAccountSchema,
-    [FiatAccountSchema.PIXAccount]: pixKeySchema
+    [FiatAccountSchema.PIXAccount]: pixAccountSchema
   },
   { description: 'fiatAccountSchemasSchema' },
 )
