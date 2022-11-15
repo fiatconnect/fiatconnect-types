@@ -14,7 +14,7 @@ export const webhookEventTypeSchema = z.nativeEnum(WebhookEventType, {
 const webhookEventBodyBaseSchema = z.object({
   provider: z.string(),
   eventId: z.string(),
-  timestamp: z.string(),
+  timestamp: z.string().length(10), // allows times between 2001 and 2286
   address: z.string(),
 })
 
