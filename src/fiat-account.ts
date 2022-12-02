@@ -57,17 +57,49 @@ const requiredFiatAccountSchemaFieldsSchema = z.object({
   fiatAccountType: fiatAccountTypeSchema,
 })
 
-export const pixAccountSchema = requiredFiatAccountSchemaFieldsSchema.and(
-  z.object(
-    {
-      keyType: pixKeyTypeEnumSchema,
-      key: z.string(),
-      fiatAccountType: z.literal(FiatAccountType.BankAccount),
-    },
-    { description: 'pixAccountSchema' },
-  ),
-)
-export type PixKey = z.infer<typeof pixAccountSchema>
+export const PIX_EMAIL_KEY_REGEX =
+  /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/ // credit to https://stackoverflow.com/a/201378/5807149
+export const PIX_CPF_KEY_REGEX = /^([0-9]{3}\.){2}[0-9]{3}[-]([0-9]{2})$/ // example: 000.000.000-00, see https://en.wikipedia.org/wiki/CPF_number
+export const PIX_PHONE_KEY_REGEX = /^[0-9]{11}$/
+export const PIX_RANDOM_KEY_REGEX = /^[a-zA-Z0-9]{32}$/
+
+export const pixAccountSchema = requiredFiatAccountSchemaFieldsSchema
+  .and(
+    z.object(
+      {
+        fiatAccountType: z.literal(FiatAccountType.BankAccount),
+        keyType: pixKeyTypeEnumSchema,
+        key: z.string(),
+      },
+      { description: 'PIXAccountSchema' },
+    ),
+  )
+  .and(
+    z
+      .object({
+        keyType: z.literal(PIXKeyTypeEnum.EMAIL),
+        key: z.string().regex(PIX_EMAIL_KEY_REGEX),
+      })
+      .or(
+        z.object({
+          keyType: z.literal(PIXKeyTypeEnum.CPF),
+          key: z.string().regex(PIX_CPF_KEY_REGEX),
+        }),
+      )
+      .or(
+        z.object({
+          keyType: z.literal(PIXKeyTypeEnum.PHONE),
+          key: z.string().regex(PIX_PHONE_KEY_REGEX),
+        }),
+      )
+      .or(
+        z.object({
+          keyType: z.literal(PIXKeyTypeEnum.RANDOM),
+          key: z.string().regex(PIX_RANDOM_KEY_REGEX),
+        }),
+      ),
+  )
+export type PIXAccount = z.infer<typeof pixAccountSchema>
 
 export const accountNumberSchema = requiredFiatAccountSchemaFieldsSchema.and(
   z.object(
