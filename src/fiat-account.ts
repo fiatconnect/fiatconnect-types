@@ -68,8 +68,6 @@ export const pixAccountSchema = requiredFiatAccountSchemaFieldsSchema
     z.object(
       {
         fiatAccountType: z.literal(FiatAccountType.BankAccount),
-        keyType: pixKeyTypeEnumSchema,
-        key: z.string(),
       },
       { description: 'PIXAccountSchema' },
     ),
