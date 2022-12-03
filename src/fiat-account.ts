@@ -16,7 +16,7 @@ export enum FiatAccountSchema {
   DuniaWallet = 'DuniaWallet',
   IBANNumber = 'IBANNumber',
   IFSCAccount = 'IFSCAccount',
-  PIXAccount = 'PIXAccount'
+  PIXAccount = 'PIXAccount',
 }
 export const fiatAccountSchemaSchema = z.nativeEnum(FiatAccountSchema, {
   description: 'fiatAccountSchemaSchema',
@@ -59,7 +59,7 @@ const requiredFiatAccountSchemaFieldsSchema = z.object({
 
 export const PIX_EMAIL_KEY_REGEX =
   /* eslint-disable-next-line no-useless-escape */ // For some reason, eslint thinks the escaped \[ and /] are useless. they are indeed useful.
-/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ // credit to http://emailregex.com/
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ // credit to http://emailregex.com/
 export const PIX_CPF_KEY_REGEX = /^([0-9]{3}\.){2}[0-9]{3}[-]([0-9]{2})$/ // example: 000.000.000-00, see https://en.wikipedia.org/wiki/CPF_number
 export const PIX_PHONE_KEY_REGEX = /^[0-9]{11}$/
 export const PIX_RANDOM_KEY_REGEX = /^[a-zA-Z0-9]{32}$/
@@ -169,7 +169,7 @@ export const fiatAccountSchemasSchema = z.object(
     [FiatAccountSchema.DuniaWallet]: duniaWalletSchema,
     [FiatAccountSchema.IBANNumber]: iBANNumberSchema,
     [FiatAccountSchema.IFSCAccount]: iFSCAccountSchema,
-    [FiatAccountSchema.PIXAccount]: pixAccountSchema
+    [FiatAccountSchema.PIXAccount]: pixAccountSchema,
   },
   { description: 'fiatAccountSchemasSchema' },
 )
