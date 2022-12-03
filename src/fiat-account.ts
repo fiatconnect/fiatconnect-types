@@ -221,6 +221,10 @@ export const postFiatAccountRequestBodySchema = z.union(
       fiatAccountSchema: z.literal(fiatAccountSchemaSchema.enum.IFSCAccount),
       data: iFSCAccountSchema,
     }),
+    z.object({
+      fiatAccountSchema: z.literal(fiatAccountSchemaSchema.enum.PIXAccount),
+      data: pixAccountSchema,
+    }),
   ],
   { description: 'postFiatAccountRequestBodySchema' },
 )
