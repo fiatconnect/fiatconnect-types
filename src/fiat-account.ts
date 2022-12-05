@@ -16,6 +16,7 @@ export enum FiatAccountSchema {
   DuniaWallet = 'DuniaWallet',
   IBANNumber = 'IBANNumber',
   IFSCAccount = 'IFSCAccount',
+  PIXAccount = 'PIXAccount',
 }
 export const fiatAccountSchemaSchema = z.nativeEnum(FiatAccountSchema, {
   description: 'fiatAccountSchemaSchema',
@@ -28,6 +29,16 @@ export enum FiatAccountType {
 }
 export const fiatAccountTypeSchema = z.nativeEnum(FiatAccountType, {
   description: 'fiatAccountTypeSchema',
+})
+
+export enum PIXKeyTypeEnum {
+  EMAIL = 'EMAIL',
+  PHONE = 'PHONE',
+  CPF = 'CPF',
+  RANDOM = 'RANDOM',
+}
+export const pixKeyTypeEnumSchema = z.nativeEnum(PIXKeyTypeEnum, {
+  description: 'pixKeyTypeEnumSchema',
 })
 
 export enum SupportedOperatorEnum {
@@ -45,6 +56,49 @@ const requiredFiatAccountSchemaFieldsSchema = z.object({
   institutionName: z.string(),
   fiatAccountType: fiatAccountTypeSchema,
 })
+
+export const PIX_EMAIL_KEY_REGEX =
+  /* eslint-disable-next-line no-useless-escape */ // For some reason, eslint thinks the escaped \[ and /] are useless. they are indeed useful.
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ // credit to http://emailregex.com/
+export const PIX_CPF_KEY_REGEX = /^([0-9]{3}\.){2}[0-9]{3}[-]([0-9]{2})$/ // example: 000.000.000-00, see https://en.wikipedia.org/wiki/CPF_number
+export const PIX_PHONE_KEY_REGEX = /^[0-9]{11}$/
+export const PIX_RANDOM_KEY_REGEX = /^[a-zA-Z0-9]{32}$/
+
+export const pixAccountSchema = requiredFiatAccountSchemaFieldsSchema
+  .and(
+    z.object(
+      {
+        fiatAccountType: z.literal(FiatAccountType.BankAccount),
+      },
+      { description: 'PIXAccountSchema' },
+    ),
+  )
+  .and(
+    z
+      .object({
+        keyType: z.literal(PIXKeyTypeEnum.EMAIL),
+        key: z.string().regex(PIX_EMAIL_KEY_REGEX),
+      })
+      .or(
+        z.object({
+          keyType: z.literal(PIXKeyTypeEnum.CPF),
+          key: z.string().regex(PIX_CPF_KEY_REGEX),
+        }),
+      )
+      .or(
+        z.object({
+          keyType: z.literal(PIXKeyTypeEnum.PHONE),
+          key: z.string().regex(PIX_PHONE_KEY_REGEX),
+        }),
+      )
+      .or(
+        z.object({
+          keyType: z.literal(PIXKeyTypeEnum.RANDOM),
+          key: z.string().regex(PIX_RANDOM_KEY_REGEX),
+        }),
+      ),
+  )
+export type PIXAccount = z.infer<typeof pixAccountSchema>
 
 export const accountNumberSchema = requiredFiatAccountSchemaFieldsSchema.and(
   z.object(
@@ -115,6 +169,7 @@ export const fiatAccountSchemasSchema = z.object(
     [FiatAccountSchema.DuniaWallet]: duniaWalletSchema,
     [FiatAccountSchema.IBANNumber]: iBANNumberSchema,
     [FiatAccountSchema.IFSCAccount]: iFSCAccountSchema,
+    [FiatAccountSchema.PIXAccount]: pixAccountSchema,
   },
   { description: 'fiatAccountSchemasSchema' },
 )
@@ -165,6 +220,10 @@ export const postFiatAccountRequestBodySchema = z.union(
     z.object({
       fiatAccountSchema: z.literal(fiatAccountSchemaSchema.enum.IFSCAccount),
       data: iFSCAccountSchema,
+    }),
+    z.object({
+      fiatAccountSchema: z.literal(fiatAccountSchemaSchema.enum.PIXAccount),
+      data: pixAccountSchema,
     }),
   ],
   { description: 'postFiatAccountRequestBodySchema' },
