@@ -59,7 +59,7 @@ export type QuoteErrorResponse = z.infer<typeof quoteErrorResponseSchema>
 export const quoteResponseKycSchemaSchema = z.object(
   {
     kycSchema: kycSchemaSchema,
-    allowedValues: z.record(z.array(z.string())),
+    allowedValues: z.record(z.array(z.string()).nonempty()),
   },
   { description: 'quoteResponseKycSchemaSchema' },
 )
@@ -71,7 +71,7 @@ export type QuoteResponseKycSchema = z.infer<
 export const quoteResponseFiatAccountSchemaSchema = z.object(
   {
     fiatAccountSchema: fiatAccountSchemaSchema,
-    allowedValues: z.record(z.array(z.string())),
+    allowedValues: z.record(z.array(z.string()).nonempty()),
   },
   { description: 'quoteResponseFiatAccountSchemaSchema' },
 )
