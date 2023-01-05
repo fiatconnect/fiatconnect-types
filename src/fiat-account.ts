@@ -47,8 +47,8 @@ export enum SupportedOperatorEnum {
   MTN = 'MTN',
   WAVE = 'WAVE',
 }
-export const supportedOperatorEnumSchema = z.nativeEnum(SupportedOperatorEnum, {
-  description: 'supportedOperatorEnumSchema',
+export const pixKeyTypeEnumSchema = z.nativeEnum(PIXKeyTypeEnum, {
+  description: 'pixKeyTypeEnumSchema',
 })
 
 const requiredFiatAccountSchemaFieldsSchema = z.object({
@@ -128,7 +128,7 @@ export const mobileMoneySchema = requiredFiatAccountSchemaFieldsSchema.and(
     {
       mobile: z.string(),
       country: z.string(),
-      operator: supportedOperatorEnumSchema,
+      operator: z.string(),
       fiatAccountType: z.literal(FiatAccountType.MobileMoney),
     },
     { description: 'mobileMoneySchema' },
