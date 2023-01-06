@@ -41,13 +41,6 @@ export const pixKeyTypeEnumSchema = z.nativeEnum(PIXKeyTypeEnum, {
   description: 'pixKeyTypeEnumSchema',
 })
 
-export enum SupportedOperatorEnum {
-  ORANGE = 'ORANGE',
-  MOOV = 'MOOV',
-  MTN = 'MTN',
-  WAVE = 'WAVE',
-}
-
 const requiredFiatAccountSchemaFieldsSchema = z.object({
   accountName: z.string(),
   institutionName: z.string(),
