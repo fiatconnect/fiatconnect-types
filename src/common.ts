@@ -24,6 +24,7 @@ export enum FiatConnectError {
   IssuedTooEarly = 'IssuedTooEarly',
   ExpirationTooLong = 'ExpirationTooLong',
   InvalidFiatAccount = 'InvalidFiatAccount',
+  InvalidQuote = 'InvalidQuote',
 }
 export const fiatConnectErrorSchema = z.nativeEnum(FiatConnectError, {
   description: 'fiatConnectErrorSchema',
