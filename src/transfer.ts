@@ -13,6 +13,7 @@ export const transferTypeSchema = z.nativeEnum(TransferType, {
 export enum TransferStatus {
   TransferStarted = 'TransferStarted',
   TransferFiatFundsDebited = 'TransferFiatFundsDebited',
+  TransferReceivedFiatFunds = 'TransferReceivedFiatFunds',
   TransferSendingCryptoFunds = 'TransferSendingCryptoFunds',
   TransferAmlFailed = 'TransferAmlFailed',
   TransferReadyForUserToSendCryptoFunds = 'TransferReadyForUserToSendCryptoFunds',
