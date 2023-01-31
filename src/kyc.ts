@@ -23,9 +23,19 @@ export const kycStatusSchema = z.nativeEnum(KycStatus, {
 // When adding new schemas be sure to also update kycSchemasSchema
 export enum KycSchema {
   PersonalDataAndDocuments = 'PersonalDataAndDocuments',
+  PersonalDataAndDocumentsDetailed = 'PersonalDataAndDocumentsDetailed'
 }
 export const kycSchemaSchema = z.nativeEnum(KycSchema, {
   description: 'kycSchemaSchema',
+})
+
+export enum KycDocumentType {
+  IDC = 'IDC',
+  PAS = 'PAS',
+  DL = 'DL'
+}
+export const kycDocumentTypeSchema = z.nativeEnum(KycDocumentType, {
+  description: 'kycDocumentTypeSchema'
 })
 
 export const personalDataAndDocumentsKycSchema = z.object(
@@ -56,10 +66,42 @@ export type PersonalDataAndDocumentsKyc = z.infer<
   typeof personalDataAndDocumentsKycSchema
 >
 
+export const personalDataAndDocumentsDetailedKycSchema = z.object(
+  {
+    firstName: z.string(),
+    middleName: z.string().optional(),
+    lastName: z.string(),
+    dateOfBirth: z.object({
+      day: z.string(),
+      month: z.string(),
+      year: z.string()
+    }),
+    address: z.object({
+      address1: z.string(),
+      address2: z.string().optional(),
+      isoCountryCode: z.string(),
+      isoRegionCode: z.string(),
+      city: z.string(),
+      postalCode: z.string().optional()
+    }),
+    phoneNumber: z.string(),
+    email: z.string(),
+    selfieDocument: z.string(),
+    identificationDocumentType: z.enum(["IDC", "PAS", "DL"]),
+    identificationDocumentFront: z.string(),
+    identificationDocumentBack: z.string().optional()
+  }
+)
+export type PersonalDataAndDocumentsDetailedKyc = z.infer<
+  typeof personalDataAndDocumentsDetailedKycSchema
+>
+
 export const kycSchemasSchema = z.object(
   {
     [kycSchemaSchema.enum.PersonalDataAndDocuments]:
       personalDataAndDocumentsKycSchema,
+    [kycSchemaSchema.enum.PersonalDataAndDocumentsDetailed]:
+      personalDataAndDocumentsDetailedKycSchema,
   },
   { description: 'kycSchemasSchema' },
 )
