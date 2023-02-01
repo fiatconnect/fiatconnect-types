@@ -29,13 +29,13 @@ export const kycSchemaSchema = z.nativeEnum(KycSchema, {
   description: 'kycSchemaSchema',
 })
 
-export enum KycDocumentType {
+export enum IdentificationDocumentType {
   IDC = 'IDC',
   PAS = 'PAS',
   DL = 'DL',
 }
-export const kycDocumentTypeSchema = z.nativeEnum(KycDocumentType, {
-  description: 'kycDocumentTypeSchema',
+export const IdentificationDocumentTypeSchema = z.nativeEnum(IdentificationDocumentType, {
+  description: 'IdentificationDocumentTypeSchema',
 })
 
 export const personalDataAndDocumentsKycSchema = z.object(
@@ -86,7 +86,7 @@ export const personalDataAndDocumentsDetailedKycSchema = z.object({
   phoneNumber: z.string(),
   email: z.string(),
   selfieDocument: z.string(),
-  identificationDocumentType: z.enum(['IDC', 'PAS', 'DL']),
+  identificationDocumentType: z.nativeEnum(IdentificationDocumentType),
   identificationDocumentFront: z.string(),
   identificationDocumentBack: z.string().optional(),
 })
