@@ -34,9 +34,12 @@ export enum IdentificationDocumentType {
   PAS = 'PAS',
   DL = 'DL',
 }
-export const IdentificationDocumentTypeSchema = z.nativeEnum(IdentificationDocumentType, {
-  description: 'IdentificationDocumentTypeSchema',
-})
+export const IdentificationDocumentTypeSchema = z.nativeEnum(
+  IdentificationDocumentType,
+  {
+    description: 'IdentificationDocumentTypeSchema',
+  },
+)
 
 export const personalDataAndDocumentsKycSchema = z.object(
   {
@@ -86,7 +89,7 @@ export const personalDataAndDocumentsDetailedKycSchema = z.object({
   phoneNumber: z.string(),
   email: z.string(),
   selfieDocument: z.string(),
-  identificationDocumentType: z.nativeEnum(IdentificationDocumentType),
+  identificationDocumentType: IdentificationDocumentTypeSchema,
   identificationDocumentFront: z.string(),
   identificationDocumentBack: z.string().optional(),
 })
