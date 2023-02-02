@@ -38,7 +38,7 @@ export enum IdentificationDocumentType {
   DL = 'DL',
 }
 
-const documentsWithBack = [
+const documentsWithBack: IdentificationDocumentType[] = [
   IdentificationDocumentType.IDC,
   IdentificationDocumentType.DL,
 ]
