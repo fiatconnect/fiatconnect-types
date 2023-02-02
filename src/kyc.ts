@@ -38,16 +38,22 @@ export enum IdentificationDocumentType {
   DL = 'DL',
 }
 
-// need [string, ...string[]] types to get zod enums to compile
-const documentsWithBack: [string, ...string[]] = [
-  IdentificationDocumentType.IDC,
-  IdentificationDocumentType.DL,
-]
-const documentsWithoutBack: [string, ...string[]] = Object.keys(
+// need nonempty array types to get zod enums to compile
+const documentsWithBack: [
   IdentificationDocumentType,
+  ...IdentificationDocumentType[],
+] = [IdentificationDocumentType.IDC, IdentificationDocumentType.DL]
+const documentsWithoutBack: [
+  IdentificationDocumentType,
+  ...IdentificationDocumentType[],
+] = (
+  Object.keys(IdentificationDocumentType) as [
+    IdentificationDocumentType,
+    ...IdentificationDocumentType[],
+  ]
 ).filter((idType) => !documentsWithBack.includes(idType)) as [
-  string,
-  ...string[],
+  IdentificationDocumentType,
+  ...IdentificationDocumentType[],
 ]
 
 const identificationDocumentTypeWithBackSchema = z.enum(documentsWithBack)
