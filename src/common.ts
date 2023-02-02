@@ -91,3 +91,6 @@ export enum CryptoType {
 export const cryptoTypeSchema = z.nativeEnum(CryptoType, {
   description: 'cryptoTypeSchema',
 })
+export const EMAIL_REGEX =
+  /* eslint-disable-next-line no-useless-escape */ // For some reason, eslint thinks the escaped \[ and /] are useless. they are indeed useful.
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ // credit to http://emailregex.com/
