@@ -46,10 +46,8 @@ const documentsWithoutBack = Object.keys(IdentificationDocumentType).filter(
   (idType: IdentificationDocumentType) => !documentsWithBack.includes(idType),
 )
 
-const identificationDocumentTypeWithBackSchema =
-  z.enum(documentsWithBack)
-const identificationDocumentTypeWithoutBackSchema =
-  z.enum(documentsWithoutBack)
+const identificationDocumentTypeWithBackSchema = z.enum(documentsWithBack)
+const identificationDocumentTypeWithoutBackSchema = z.enum(documentsWithoutBack)
 export const identificationDocumentTypeSchema =
   identificationDocumentTypeWithBackSchema.or(
     identificationDocumentTypeWithoutBackSchema,
