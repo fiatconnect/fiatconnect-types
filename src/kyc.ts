@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { EMAIL_REGEX } from './common'
 
 export enum KycStatus {
   KycNotCreated = 'KycNotCreated',
@@ -7,6 +8,7 @@ export enum KycStatus {
   KycDenied = 'KycDenied',
   KycExpired = 'KycExpired',
 }
+
 export const kycStatusSchema = z.nativeEnum(KycStatus, {
   description: 'kycStatusSchema',
 })
@@ -23,10 +25,43 @@ export const kycStatusSchema = z.nativeEnum(KycStatus, {
 // When adding new schemas be sure to also update kycSchemasSchema
 export enum KycSchema {
   PersonalDataAndDocuments = 'PersonalDataAndDocuments',
+  PersonalDataAndDocumentsDetailed = 'PersonalDataAndDocumentsDetailed',
 }
+
 export const kycSchemaSchema = z.nativeEnum(KycSchema, {
   description: 'kycSchemaSchema',
 })
+
+export enum IdentificationDocumentType {
+  IDC = 'IDC',
+  PAS = 'PAS',
+  DL = 'DL',
+}
+
+// need nonempty array types to get zod enums to compile
+const documentsWithBack: [
+  IdentificationDocumentType,
+  ...IdentificationDocumentType[],
+] = [IdentificationDocumentType.IDC, IdentificationDocumentType.DL]
+const documentsWithoutBack: [
+  IdentificationDocumentType,
+  ...IdentificationDocumentType[],
+] = (
+  Object.keys(IdentificationDocumentType) as [
+    IdentificationDocumentType,
+    ...IdentificationDocumentType[],
+  ]
+).filter((idType) => !documentsWithBack.includes(idType)) as [
+  IdentificationDocumentType,
+  ...IdentificationDocumentType[],
+]
+
+const identificationDocumentTypeWithBackSchema = z.enum(documentsWithBack)
+const identificationDocumentTypeWithoutBackSchema = z.enum(documentsWithoutBack)
+export const identificationDocumentTypeSchema =
+  identificationDocumentTypeWithBackSchema.or(
+    identificationDocumentTypeWithoutBackSchema,
+  )
 
 export const personalDataAndDocumentsKycSchema = z.object(
   {
@@ -56,10 +91,39 @@ export type PersonalDataAndDocumentsKyc = z.infer<
   typeof personalDataAndDocumentsKycSchema
 >
 
+export const personalDataAndDocumentsDetailedKycSchema =
+  personalDataAndDocumentsKycSchema
+    .omit({ identificationDocument: true })
+    .and(
+      z.object({
+        email: z.string().regex(EMAIL_REGEX),
+        identificationDocumentFront: z.string(),
+      }),
+    )
+    .and(
+      z
+        .object({
+          identificationDocumentType: identificationDocumentTypeWithBackSchema,
+          identificationDocumentBack: z.string(),
+        })
+        .or(
+          z.object({
+            identificationDocumentType:
+              identificationDocumentTypeWithoutBackSchema,
+          }),
+        ),
+    )
+
+export type PersonalDataAndDocumentsDetailedKyc = z.infer<
+  typeof personalDataAndDocumentsDetailedKycSchema
+>
+
 export const kycSchemasSchema = z.object(
   {
     [kycSchemaSchema.enum.PersonalDataAndDocuments]:
       personalDataAndDocumentsKycSchema,
+    [kycSchemaSchema.enum.PersonalDataAndDocumentsDetailed]:
+      personalDataAndDocumentsDetailedKycSchema,
   },
   { description: 'kycSchemasSchema' },
 )
