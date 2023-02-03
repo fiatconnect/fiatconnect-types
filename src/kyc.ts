@@ -98,7 +98,6 @@ export const personalDataAndDocumentsDetailedKycSchema =
       z.object({
         email: z.string().regex(EMAIL_REGEX),
         identificationDocumentFront: z.string(),
-        identificationDocumentType: identificationDocumentTypeSchema,
       }),
     )
     .and(
