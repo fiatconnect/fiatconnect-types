@@ -50,7 +50,7 @@ const requiredFiatAccountSchemaFieldsSchema = z.object({
 
 export const PIX_CPF_KEY_REGEX = /^([0-9]{3}\.){2}[0-9]{3}[-]([0-9]{2})$/ // example: 000.000.000-00, see https://en.wikipedia.org/wiki/CPF_number
 export const PIX_PHONE_KEY_REGEX = /^[0-9]{11}$/
-export const PIX_RANDOM_KEY_REGEX = /^[a-zA-Z0-9-]{32}$/
+export const PIX_RANDOM_KEY_REGEX = /^[a-zA-Z0-9-]{36}$/
 
 export const pixAccountSchema = requiredFiatAccountSchemaFieldsSchema
   .and(
