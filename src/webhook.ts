@@ -36,7 +36,7 @@ export const webhookRequestBodyTransferOutSchema = z.intersection(
   webhookEventBodyBaseSchema,
   z.object({
     eventType: z.literal(WebhookEventType.TransferOutStatusEvent),
-    payload: transferStatusResponseSchema,
+    payload: transferStatusResponseSchema.omit({ txHash: true }),
   }),
   {
     description: 'webhookRequestBodyTransferOutSchema',

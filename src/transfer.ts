@@ -70,6 +70,7 @@ export const transferStatusResponseSchema = z.object(
     fiatAccountId: fiatAccountIdSchema,
     transferId: z.string(),
     transferAddress: z.string(),
+    txHash: z.string().optional(),
   },
   { description: 'transferStatusResponseSchema' },
 )
