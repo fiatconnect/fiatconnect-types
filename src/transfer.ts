@@ -25,6 +25,45 @@ export const transferStatusSchema = z.nativeEnum(TransferStatus, {
   description: 'transferStatusSchema',
 })
 
+// These enums are first segmented between transfers in and transfers out
+// since they both allow a slightly different set of statuses.
+// Transfer in statuses are further segmented, since once a transfer in
+// progresses to sending the user funds, providers are expected
+// to return new metadata about the transfer. This segmentation allows
+// us to encode those semantics into Zod schemas.
+export enum TransferInStatusPreTx {
+  TransferStarted = TransferStatus.TransferStarted,
+  TransferFiatFundsDebited = TransferStatus.TransferFiatFundsDebited,
+  TransferReceivedFiatFunds = TransferStatus.TransferReceivedFiatFunds,
+  TransferFailed = TransferStatus.TransferFailed,
+}
+export const transferInStatusPreTxSchema = z.nativeEnum(TransferInStatusPreTx, {
+  description: 'transferInStatusPreTxSchema',
+})
+
+export enum TransferInStatusPostTx {
+  TransferSendingCryptoFunds = TransferStatus.TransferSendingCryptoFunds,
+  TransferComplete = TransferStatus.TransferComplete,
+}
+export const transferInStatusPostTxSchema = z.nativeEnum(
+  TransferInStatusPostTx,
+  {
+    description: 'transferInStatusPostTxSchema',
+  },
+)
+
+export enum TransferOutStatus {
+  TransferStarted = TransferStatus.TransferStarted,
+  TransferAmlFailed = TransferStatus.TransferAmlFailed,
+  TransferReadyForUserToSendCryptoFunds = TransferStatus.TransferReadyForUserToSendCryptoFunds,
+  TransferReceivedCryptoFunds = TransferStatus.TransferReceivedCryptoFunds,
+  TransferComplete = TransferStatus.TransferComplete,
+  TransferFailed = TransferStatus.TransferFailed,
+}
+export const transferOutStatusSchema = z.nativeEnum(TransferOutStatus, {
+  description: 'transferOutStatusSchema',
+})
+
 /*
 / Transfer Endpoint Types
 */
@@ -58,10 +97,10 @@ export type TransferStatusRequestParams = z.infer<
   typeof transferStatusRequestParamsSchema
 >
 
-export const transferStatusResponseSchema = z.object(
+const transferInStatusPreTxResponseSchema = z.object(
   {
-    status: transferStatusSchema,
-    transferType: transferTypeSchema,
+    status: transferInStatusPreTxSchema,
+    transferType: z.literal(TransferType.TransferIn),
     fiatType: fiatTypeSchema,
     cryptoType: cryptoTypeSchema,
     amountProvided: z.string(),
@@ -71,7 +110,28 @@ export const transferStatusResponseSchema = z.object(
     transferId: z.string(),
     transferAddress: z.string(),
   },
-  { description: 'transferStatusResponseSchema' },
+  { description: 'transferInStatusPreTxResponseSchema' },
+)
+const transferInStatusPostTxResponseSchema = z.object(
+  transferInStatusPreTxResponseSchema.extend({
+    status: transferInStatusPostTxSchema,
+    txHash: z.string(),
+  }).shape,
+  { description: 'transferInStatusPostTxResponseSchema' },
+)
+export const transferInStatusResponseSchema =
+  transferInStatusPreTxResponseSchema.or(transferInStatusPostTxResponseSchema)
+
+export const transferOutStatusResponseSchema = z.object(
+  transferInStatusPreTxResponseSchema.extend({
+    transferType: z.literal(TransferType.TransferOut),
+    status: transferOutStatusSchema,
+  }).shape,
+  { description: 'transferOutStatusResponseSchema' },
+)
+
+export const transferStatusResponseSchema = transferInStatusResponseSchema.or(
+  transferOutStatusResponseSchema,
 )
 export type TransferStatusResponse = z.infer<
   typeof transferStatusResponseSchema

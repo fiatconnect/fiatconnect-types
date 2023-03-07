@@ -1,6 +1,9 @@
 import { z } from 'zod'
 import { kycSchemaSchema, kycStatusSchema } from './kyc'
-import { transferStatusResponseSchema } from './transfer'
+import {
+  transferInStatusResponseSchema,
+  transferOutStatusResponseSchema,
+} from './transfer'
 
 export enum WebhookEventType {
   KycStatusEvent = 'WebhookKycStatusEvent',
@@ -22,7 +25,7 @@ export const webhookRequestBodyTransferInSchema = z.intersection(
   webhookEventBodyBaseSchema,
   z.object({
     eventType: z.literal(WebhookEventType.TransferInStatusEvent),
-    payload: transferStatusResponseSchema,
+    payload: transferInStatusResponseSchema,
   }),
   {
     description: 'webhookRequestBodyTransferInSchema',
@@ -36,7 +39,7 @@ export const webhookRequestBodyTransferOutSchema = z.intersection(
   webhookEventBodyBaseSchema,
   z.object({
     eventType: z.literal(WebhookEventType.TransferOutStatusEvent),
-    payload: transferStatusResponseSchema,
+    payload: transferOutStatusResponseSchema,
   }),
   {
     description: 'webhookRequestBodyTransferOutSchema',
