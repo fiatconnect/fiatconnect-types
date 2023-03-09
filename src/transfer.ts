@@ -6,6 +6,7 @@ export enum TransferType {
   TransferIn = 'TransferIn',
   TransferOut = 'TransferOut',
 }
+
 export const transferTypeSchema = z.nativeEnum(TransferType, {
   description: 'transferTypeSchema',
 })
@@ -21,48 +22,50 @@ export enum TransferStatus {
   TransferComplete = 'TransferComplete',
   TransferFailed = 'TransferFailed',
 }
+
 export const transferStatusSchema = z.nativeEnum(TransferStatus, {
   description: 'transferStatusSchema',
 })
 
-// These enums are first segmented between transfers in and transfers out
+// Transfer status schemas are first segmented between transfers in and transfers out
 // since they both allow a slightly different set of statuses.
 // Transfer in statuses are further segmented, since once a transfer in
 // progresses to sending the user funds, providers are expected
 // to return new metadata about the transfer. This segmentation allows
 // us to encode those semantics into Zod schemas.
-export enum TransferInStatusPreTx {
-  TransferStarted = TransferStatus.TransferStarted,
-  TransferFiatFundsDebited = TransferStatus.TransferFiatFundsDebited,
-  TransferReceivedFiatFunds = TransferStatus.TransferReceivedFiatFunds,
-  TransferFailed = TransferStatus.TransferFailed,
-}
-export const transferInStatusPreTxSchema = z.nativeEnum(TransferInStatusPreTx, {
-  description: 'transferInStatusPreTxSchema',
-})
 
-export enum TransferInStatusPostTx {
-  TransferSendingCryptoFunds = TransferStatus.TransferSendingCryptoFunds,
-  TransferComplete = TransferStatus.TransferComplete,
-}
-export const transferInStatusPostTxSchema = z.nativeEnum(
-  TransferInStatusPostTx,
+export const transferInStatusPreTxSchema = z.enum(
+  [
+    TransferStatus.TransferStarted,
+    TransferStatus.TransferFiatFundsDebited,
+    TransferStatus.TransferReceivedFiatFunds,
+    TransferStatus.TransferFailed,
+  ],
+  {
+    description: 'transferInStatusPreTxSchema',
+  },
+)
+
+export const transferInStatusPostTxSchema = z.enum(
+  [TransferStatus.TransferSendingCryptoFunds, TransferStatus.TransferComplete],
   {
     description: 'transferInStatusPostTxSchema',
   },
 )
 
-export enum TransferOutStatus {
-  TransferStarted = TransferStatus.TransferStarted,
-  TransferAmlFailed = TransferStatus.TransferAmlFailed,
-  TransferReadyForUserToSendCryptoFunds = TransferStatus.TransferReadyForUserToSendCryptoFunds,
-  TransferReceivedCryptoFunds = TransferStatus.TransferReceivedCryptoFunds,
-  TransferComplete = TransferStatus.TransferComplete,
-  TransferFailed = TransferStatus.TransferFailed,
-}
-export const transferOutStatusSchema = z.nativeEnum(TransferOutStatus, {
-  description: 'transferOutStatusSchema',
-})
+export const transferOutStatusSchema = z.enum(
+  [
+    TransferStatus.TransferStarted,
+    TransferStatus.TransferAmlFailed,
+    TransferStatus.TransferReadyForUserToSendCryptoFunds,
+    TransferStatus.TransferReceivedCryptoFunds,
+    TransferStatus.TransferComplete,
+    TransferStatus.TransferFailed,
+  ],
+  {
+    description: 'transferOutStatusSchema',
+  },
+)
 
 /*
 / Transfer Endpoint Types
