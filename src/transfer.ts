@@ -1,6 +1,6 @@
 import { z } from 'zod'
+import { cryptoTypeSchema, fiatTypeSchema } from './common'
 import { fiatAccountIdSchema } from './fiat-account'
-import { fiatTypeSchema, cryptoTypeSchema } from './common'
 
 export enum TransferType {
   TransferIn = 'TransferIn',
@@ -13,6 +13,7 @@ export const transferTypeSchema = z.nativeEnum(TransferType, {
 
 export enum TransferStatus {
   TransferStarted = 'TransferStarted',
+  TransferWaitingForUserAction = 'TransferWaitingForUserAction',
   TransferFiatFundsDebited = 'TransferFiatFundsDebited',
   TransferReceivedFiatFunds = 'TransferReceivedFiatFunds',
   TransferSendingCryptoFunds = 'TransferSendingCryptoFunds',
@@ -37,6 +38,7 @@ export const transferStatusSchema = z.nativeEnum(TransferStatus, {
 export const transferInStatusPreTxSchema = z.enum(
   [
     TransferStatus.TransferStarted,
+    TransferStatus.TransferWaitingForUserAction,
     TransferStatus.TransferFiatFundsDebited,
     TransferStatus.TransferReceivedFiatFunds,
     TransferStatus.TransferFailed,
