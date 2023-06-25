@@ -94,3 +94,38 @@ export const cryptoTypeSchema = z.nativeEnum(CryptoType, {
 export const EMAIL_REGEX =
   /* eslint-disable-next-line no-useless-escape */ // For some reason, eslint thinks the escaped \[ and /] are useless. they are indeed useful.
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ // credit to http://emailregex.com/
+
+export enum TransferInUserActionDetails {
+  PIXUserAction = 'PIXUserAction',
+  IBANUserAction = 'IBANUserAction',
+  PSEUserAction = 'PSEUserAction',
+}
+export const transferInUserActionDetailsSchema = z.nativeEnum(
+  TransferInUserActionDetails,
+  {
+    description: 'transferInUserActionDetailsSchema',
+  },
+)
+
+export const pixUserActionSchema = z.object(
+  {
+    userActionType: z.literal(TransferInUserActionDetails.PIXUserAction),
+    pixString: z.string(),
+  },
+  { description: 'pixUserActionSchema' },
+)
+export const ibanUserActionSchema = z.object(
+  {
+    userActionType: z.literal(TransferInUserActionDetails.IBANUserAction),
+    iban: z.string(),
+    bic: z.string(),
+  },
+  { description: 'ibanUserActionSchema' },
+)
+export const pseUserActionSchema = z.object(
+  {
+    userActionType: z.literal(TransferInUserActionDetails.PSEUserAction),
+    url: z.string(),
+  },
+  { description: 'pseUserActionSchema' },
+)

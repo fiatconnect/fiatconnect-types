@@ -1,5 +1,11 @@
 import { z } from 'zod'
-import { cryptoTypeSchema, fiatTypeSchema } from './common'
+import {
+  cryptoTypeSchema,
+  fiatTypeSchema,
+  pixUserActionSchema,
+  ibanUserActionSchema,
+  pseUserActionSchema,
+} from './common'
 import { fiatAccountIdSchema } from './fiat-account'
 
 export enum TransferType {
@@ -69,6 +75,13 @@ export const transferOutStatusSchema = z.enum(
   },
 )
 
+// Helper type
+const userActionDetailsSchema = z.union([
+  pixUserActionSchema,
+  ibanUserActionSchema,
+  pseUserActionSchema,
+])
+
 /*
 / Transfer Endpoint Types
 */
@@ -82,13 +95,29 @@ export const transferRequestBodySchema = z.object(
 )
 export type TransferRequestBody = z.infer<typeof transferRequestBodySchema>
 
-export const transferResponseSchema = z.object(
+export const transferOutResponseSchema = z.object(
   {
     transferId: z.string(),
     transferStatus: transferStatusSchema,
     transferAddress: z.string(),
   },
-  { description: 'transferResponseSchema' },
+  { description: 'transferOutResponseSchema' },
+)
+export type TransferOutResponse = z.infer<typeof transferOutResponseSchema>
+
+export const transferInResponseSchema = z.object(
+  {
+    transferId: z.string(),
+    transferStatus: transferStatusSchema,
+    transferAddress: z.string(),
+    userActionDetails: userActionDetailsSchema.optional(),
+  },
+  { description: 'transferInResponseSchema' },
+)
+export type TransferInResponse = z.infer<typeof transferInResponseSchema>
+
+export const transferResponseSchema = transferInResponseSchema.or(
+  transferOutResponseSchema,
 )
 export type TransferResponse = z.infer<typeof transferResponseSchema>
 
@@ -114,6 +143,7 @@ const transferInStatusPreTxResponseSchema = z.object(
     fiatAccountId: fiatAccountIdSchema,
     transferId: z.string(),
     transferAddress: z.string(),
+    userActionDetails: userActionDetailsSchema.optional(),
   },
   { description: 'transferInStatusPreTxResponseSchema' },
 )
