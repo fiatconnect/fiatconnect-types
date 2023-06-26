@@ -3,6 +3,7 @@ import {
   cryptoTypeSchema,
   fiatConnectErrorSchema,
   fiatTypeSchema,
+  transferInUserActionDetailsSchema,
 } from './common'
 import { fiatAccountSchemaSchema, fiatAccountTypeSchema } from './fiat-account'
 import { kycSchemaSchema } from './kyc'
@@ -72,6 +73,7 @@ export const quoteResponseFiatAccountSchemaSchema = z.object(
   {
     fiatAccountSchema: fiatAccountSchemaSchema,
     allowedValues: z.record(z.array(z.string()).nonempty()),
+    userActionType: transferInUserActionDetailsSchema.optional(),
   },
   { description: 'quoteResponseFiatAccountSchemaSchema' },
 )
