@@ -28,7 +28,7 @@
   "private": false,
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "@valora/eslint-config-typescript": "^1.0.1",
+    "@valora/eslint-config-typescript": "^1.0.2",
     "@valora/prettier-config": "^0.0.1",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "eslint": "^8.45.0",
