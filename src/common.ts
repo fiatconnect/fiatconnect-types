@@ -26,6 +26,7 @@ export enum FiatConnectError {
   InvalidFiatAccount = 'InvalidFiatAccount',
   InvalidQuote = 'InvalidQuote',
 }
+
 export const fiatConnectErrorSchema = z.nativeEnum(FiatConnectError, {
   description: 'fiatConnectErrorSchema',
 })
@@ -34,6 +35,7 @@ export enum Network {
   Alfajores = 'Alfajores',
   Mainnet = 'Mainnet',
 }
+
 export const networkSchema = z.nativeEnum(Network, {
   description: 'networkSchema',
 })
@@ -78,6 +80,7 @@ export enum FiatType {
   MXN = 'MXN',
   PAB = 'PAB',
 }
+
 export const fiatTypeSchema = z.nativeEnum(FiatType, {
   description: 'fiatTypeSchema',
 })
@@ -88,6 +91,7 @@ export enum CryptoType {
   cREAL = 'cREAL',
   CELO = 'CELO',
 }
+
 export const cryptoTypeSchema = z.nativeEnum(CryptoType, {
   description: 'cryptoTypeSchema',
 })
@@ -99,7 +103,9 @@ export enum TransferInUserActionDetails {
   PIXUserAction = 'PIXUserAction',
   IBANUserAction = 'IBANUserAction',
   PSEUserAction = 'PSEUserAction',
+  URLUserAction = 'URLUserAction',
 }
+
 export const transferInUserActionDetailsSchema = z.nativeEnum(
   TransferInUserActionDetails,
   {
@@ -122,10 +128,20 @@ export const ibanUserActionSchema = z.object(
   },
   { description: 'ibanUserActionSchema' },
 )
+
+// @deprecated - use URLUserAction instead
 export const pseUserActionSchema = z.object(
   {
     userActionType: z.literal(TransferInUserActionDetails.PSEUserAction),
     url: z.string(),
   },
   { description: 'pseUserActionSchema' },
+)
+
+export const urlUserActionSchema = z.object(
+  {
+    userActionType: z.literal(TransferInUserActionDetails.URLUserAction),
+    url: z.string(),
+  },
+  { description: 'urlUserActionSchema' },
 )
