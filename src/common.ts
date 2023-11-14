@@ -104,6 +104,7 @@ export enum TransferInUserActionDetails {
   IBANUserAction = 'IBANUserAction',
   PSEUserAction = 'PSEUserAction',
   URLUserAction = 'URLUserAction',
+  AccountNumberUserAction = 'AccountNumberUserAction',
 }
 
 export const transferInUserActionDetailsSchema = z.nativeEnum(
@@ -144,4 +145,18 @@ export const urlUserActionSchema = z.object(
     url: z.string(),
   },
   { description: 'urlUserActionSchema' },
+)
+
+export const accountNumberUserActionSchema = z.object(
+  {
+    userActionType: z.literal(
+      TransferInUserActionDetails.AccountNumberUserAction,
+    ),
+    institutionName: z.string(),
+    accountName: z.string(),
+    accountNumber: z.string(),
+    transactionReference: z.string().optional(),
+    deadline: z.string().optional(),
+  },
+  { description: 'accountNumberUserActionSchema' },
 )

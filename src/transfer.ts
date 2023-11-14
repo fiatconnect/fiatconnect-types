@@ -6,6 +6,7 @@ import {
   ibanUserActionSchema,
   pseUserActionSchema,
   urlUserActionSchema,
+  accountNumberUserActionSchema,
 } from './common'
 import { fiatAccountIdSchema } from './fiat-account'
 
@@ -82,6 +83,7 @@ const userActionDetailsSchema = z.union([
   ibanUserActionSchema,
   pseUserActionSchema,
   urlUserActionSchema,
+  accountNumberUserActionSchema,
 ])
 
 /*
