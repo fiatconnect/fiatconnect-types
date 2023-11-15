@@ -104,6 +104,7 @@ export enum TransferInUserActionDetails {
   IBANUserAction = 'IBANUserAction',
   PSEUserAction = 'PSEUserAction',
   URLUserAction = 'URLUserAction',
+  AccountNumberUserAction = 'AccountNumberUserAction',
 }
 
 export const transferInUserActionDetailsSchema = z.nativeEnum(
@@ -145,3 +146,27 @@ export const urlUserActionSchema = z.object(
   },
   { description: 'urlUserActionSchema' },
 )
+
+export const accountNumberUserActionSchema = z.object(
+  {
+    userActionType: z.literal(
+      TransferInUserActionDetails.AccountNumberUserAction,
+    ),
+    institutionName: z.string(),
+    accountName: z.string(),
+    accountNumber: z.string(),
+    transactionReference: z.string().optional(),
+    deadline: z.string().optional(),
+  },
+  { description: 'accountNumberUserActionSchema' },
+)
+
+export const userActionDetailsSchema = z.union([
+  pixUserActionSchema,
+  ibanUserActionSchema,
+  pseUserActionSchema,
+  urlUserActionSchema,
+  accountNumberUserActionSchema,
+])
+
+export type UserActionDetails = z.infer<typeof userActionDetailsSchema>
