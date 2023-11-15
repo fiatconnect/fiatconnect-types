@@ -160,3 +160,13 @@ export const accountNumberUserActionSchema = z.object(
   },
   { description: 'accountNumberUserActionSchema' },
 )
+
+export const userActionDetailsSchema = z.union([
+  pixUserActionSchema,
+  ibanUserActionSchema,
+  pseUserActionSchema,
+  urlUserActionSchema,
+  accountNumberUserActionSchema,
+])
+
+export type UserActionDetails = z.infer<typeof userActionDetailsSchema>

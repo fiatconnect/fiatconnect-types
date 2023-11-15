@@ -2,11 +2,7 @@ import { z } from 'zod'
 import {
   cryptoTypeSchema,
   fiatTypeSchema,
-  pixUserActionSchema,
-  ibanUserActionSchema,
-  pseUserActionSchema,
-  urlUserActionSchema,
-  accountNumberUserActionSchema,
+  userActionDetailsSchema,
 } from './common'
 import { fiatAccountIdSchema } from './fiat-account'
 
@@ -76,15 +72,6 @@ export const transferOutStatusSchema = z.enum(
     description: 'transferOutStatusSchema',
   },
 )
-
-// Helper type
-const userActionDetailsSchema = z.union([
-  pixUserActionSchema,
-  ibanUserActionSchema,
-  pseUserActionSchema,
-  urlUserActionSchema,
-  accountNumberUserActionSchema,
-])
 
 /*
 / Transfer Endpoint Types
