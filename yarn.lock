@@ -1224,7 +1224,7 @@
     natural-compare "^1.4.0"
     ts-api-utils "^1.3.0"
 
-"@typescript-eslint/parser@^8.26.0":
+"@typescript-eslint/parser@^8.26.1":
   version "8.26.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-8.26.1.tgz#0e2f915a497519fc43f52cf2ecbfa607ff56f72e"
   integrity sha512-w6HZUV4NWxqd8BdeFf81t07d7/YV9s7TCWrQQbG5uhuvGUAW+fq1usZ1Hmz9UPNLniFnD8GLSsDpjP0hm1S4lQ==
@@ -1378,12 +1378,12 @@
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@valora/eslint-config-typescript@^1.1.12":
-  version "1.1.12"
-  resolved "https://registry.yarnpkg.com/@valora/eslint-config-typescript/-/eslint-config-typescript-1.1.12.tgz#2f0bc2ec0a40a23a5d13a38e9c89046800d94d0b"
-  integrity sha512-LLE2FGiwliMCapLxIb/YfEXI2tF8TrW14kM3mNwimUBOVvKkwZZwMOAvHQ1Z1ExDIvbBa9QECOXsJgwa/OEgaA==
+"@valora/eslint-config-typescript@^1.1.13":
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/@valora/eslint-config-typescript/-/eslint-config-typescript-1.1.13.tgz#f2fd976328206ecd7da6fea6a1bc06bfe05ca086"
+  integrity sha512-HtfHO8x7IeaeNRUgBpgy56tOBZvFfvDZlSz6jO0JHKK13YDnr783DVBtAwQRFGt4E86Oamd2cKqW0flWU9RWGA==
   dependencies:
-    "@typescript-eslint/parser" "^8.26.0"
+    "@typescript-eslint/parser" "^8.26.1"
 
 "@valora/prettier-config@^0.0.1":
   version "0.0.1"
