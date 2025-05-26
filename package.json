@@ -50,6 +50,6 @@
     "preset": "conventionalcommits"
   },
   "dependencies": {
-    "zod": "^3.25.23"
+    "zod": "^3.25.28"
   }
 }
