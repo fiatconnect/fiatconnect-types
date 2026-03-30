@@ -40,7 +40,7 @@
     "jest": "^30.3.0",
     "prettier": "^3.8.1",
     "semantic-release": "^25.0.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "prettier": "@valora/prettier-config",
   "release": {
